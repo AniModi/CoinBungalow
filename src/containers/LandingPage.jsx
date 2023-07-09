@@ -2,34 +2,46 @@ import React, { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import "../assets/styles/containers/LandingPage.scss";
 import Navbar from "../components/Navbar";
+import LandingPageSection from "../components/LandingPageSection";
+import LandingPageSectionFlipped from "../components/LandingPageSectionFlipped";
 
 const LandingPage = () => {
-  const refProperty = useRef(null);
-  const refFinance = useRef(null);
   const refBanner = useRef(true);
-  const isInViewProperty = useInView(refProperty);
-  const isInViewFinance = useInView(refFinance);
   const isInViewBanner = useInView(refBanner);
-  const propertyAnimateControl = useAnimation();
-  const financeAnimateControl = useAnimation();
   const bannerAnimateControl = useAnimation();
+  
+
+  const data = [
+    {
+      title: "Want to deal in properties?",
+      body: "Well, we got you covered!",
+      img: "https://i.imgur.com/xXYkKFA.png",
+      url1: "/buy-house",
+      url2: "/sell-house",
+      text1: "Buy a property",
+      text2: "Sell a property",
+    },
+    {
+      title: "Want to deal in properties?",
+      body: "Well, we got you covered!",
+      img: "https://i.imgur.com/53cIK90.png",
+      url1: "/get-financing",
+      url2: "/invest",
+      text1: "Get Financing",
+      text2: "Invest",
+    },
+    {
+      title: "Want to deal in Land?",
+      body: "Well, we got you covered!",
+      img: "https://img.freepik.com/premium-photo/include-landscape-real-estate-green-field-crop-agricultural-planttract-land-housing-subdivision-aerial-view-land-positioning-point-area_43780-7524.jpg",
+      url1: "/buy-land",
+      url2: "/sell-land",
+      text1: "Buy a Land",
+      text2: "Sell a Land",
+    }
+  ]
+
   useEffect(() => {
-    if (isInViewProperty) {
-      propertyAnimateControl.stop();
-      propertyAnimateControl.start({ opacity: 1, y: 0 });
-    }
-    if (!isInViewProperty) {
-      propertyAnimateControl.stop();
-      propertyAnimateControl.start({ opacity: 0, y: 200 });
-    }
-    if (isInViewFinance) {
-      financeAnimateControl.stop();
-      financeAnimateControl.start({ opacity: 1, y: 0 });
-    }
-    if (!isInViewFinance) {
-      financeAnimateControl.stop();
-      financeAnimateControl.start({ opacity: 0, y: 200 });
-    }
     if (isInViewBanner) {
       bannerAnimateControl.stop();
       bannerAnimateControl.start({ opacity: 1, y: 0 });
@@ -38,7 +50,7 @@ const LandingPage = () => {
       bannerAnimateControl.stop();
       bannerAnimateControl.start({ opacity: 0, y: -200 });
     }
-  }, [isInViewProperty, isInViewFinance, isInViewBanner, propertyAnimateControl, financeAnimateControl, bannerAnimateControl]);
+  }, [isInViewBanner, bannerAnimateControl]);
   return (
     <>
         <Navbar></Navbar>
@@ -63,64 +75,9 @@ const LandingPage = () => {
             </div>
           </div>
         </motion.div>
-        <motion.div
-          className="landing_page_container__properties"
-          initial={{ opacity: 0, y: 200 }}
-          animate={propertyAnimateControl}
-          transition={{ duration: 1 }}
-        >
-          <div className="landing_page_container__properties__left">
-            <div className="landing_page_container__properties__left__title">
-              Want to deal in properties?
-            </div>
-            <div className="landing_page_container__properties__left__body">
-                <div className="landing_page_container__properties__left__body__text">
-                    Well, we got you covered!
-                </div>
-                <div className="landing_page_container__properties__left__body__btn_container">
-                    <button className="landing_page_container__properties__left__body__btn_container__btn">Explore properties</button>
-                    <button className="landing_page_container__properties__left__body__btn_container__btn">List properties</button>
-                </div>
-            </div>
-          </div>
-          <div className="landing_page_container__properties__right">
-            <div className="landing_page_container__properties__right__circle">
-              <div
-                className="landing_page_container__properties__right__circle__img"
-                ref={refProperty}
-              ></div>
-            </div>
-          </div>
-        </motion.div>
-        <motion.div
-          className="landing_page_container__finance"
-          initial={{ opacity: 0, y: 200 }}
-          animate={financeAnimateControl}
-          transition={{ duration: 1 }}
-        >
-          <div className="landing_page_container__finance__left">
-            <div className="landing_page_container__finance__left__circle">
-              <div
-                className="landing_page_container__finance__left__circle__img"
-                ref={refFinance}
-              ></div>
-            </div>
-          </div>
-          <div className="landing_page_container__finance__right">
-          <div className="landing_page_container__finance__right__title">
-              Want to deal in properties?
-            </div>
-            <div className="landing_page_container__finance__right__body">
-                <div className="landing_page_container__finance__right__body__text">
-                    Well, we got you covered!
-                </div>
-                <div className="landing_page_container__finance__right__body__btn_container">
-                    <button className="landing_page_container__finance__right__body__btn_container__btn">Explore properties</button>
-                    <button className="landing_page_container__finance__right__body__btn_container__btn">List properties</button>
-                </div>
-            </div>
-          </div>
-        </motion.div>
+        <LandingPageSection props = {data[0]}></LandingPageSection>
+        <LandingPageSectionFlipped props = {data[1]}></LandingPageSectionFlipped>
+        <LandingPageSection props = {data[2]}></LandingPageSection>
       </div>
     </>
   );

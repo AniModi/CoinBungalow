@@ -11,4 +11,5 @@ html,body {
   overflow-x: hidden;
   position: relative;
   z-index: 10;
+  background-color: #1e1e1e;
 }
