@@ -1,0 +1,35 @@
+.navbar_container {
+    width: 100vw;
+    height: 60px;
+    color: white;
+    background-color: #19253f49;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    &__left {
+        width: 50%;
+        font-size: 1.5rem;
+        font-weight: 700;
+        padding-left: 2rem;
+        cursor: pointer;
+    }
+    &__right {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-content: flex-end;
+        &__circle {
+            margin-right: 2rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 100%;
+            background-color: #fff;
+            height: 50px;
+            width: 50px;
+        }
+    }
+}
