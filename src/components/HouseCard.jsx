@@ -6,7 +6,9 @@ import { motion, useAnimation, useInView } from "framer-motion";
 const HouseCard = ({ props }) => {
   const { image, data, title, address } = props;
   const refCard = useRef(null);
-  const isInView = useInView(refCard, {once: true});
+  const refCardEnd = useRef(null);
+  const isInView = useInView(refCard);
+  const isInViewEnd = useInView(refCardEnd);
   const cardAnimateControl = useAnimation();
 
   useEffect(() => {
@@ -17,21 +19,21 @@ const HouseCard = ({ props }) => {
         x: 0,
         transition: { duration: 0.5 },
       });
-    } else {
+    } else if(!isInViewEnd) {
       cardAnimateControl.stop();
       cardAnimateControl.start({
         opacity: 0,
         x: -100,
       });
     }
-  }, [isInView, cardAnimateControl]);
+  }, [isInView, cardAnimateControl, isInViewEnd]);
   return (
-    <motion.div 
-    className="house_card_container" 
-    ref={refCard}
-    animate={cardAnimateControl}
-    initial={{opacity: 0, x: -100}}
-    duration={0.5}
+    <motion.div
+      className="house_card_container"
+      animate={cardAnimateControl}
+      initial={{ opacity: 0, x: -100 }}
+      duration={0.5}
+      ref={refCardEnd}
     >
       <div className="house_card_container__left">
         <div className="house_card_container__left__image_container">
@@ -53,12 +55,15 @@ const HouseCard = ({ props }) => {
         </div>{" "}
         <div className="house_card_container__right__description">
           <div className="house_card_container__right__description__table">
-            <CardTable props = {data}></CardTable>
+            <CardTable props={data}></CardTable>
           </div>
         </div>{" "}
         <div className="house_card_container__right__price">
           <div className="house_card_container__right__price__title">Price</div>
-          <div className="house_card_container__right__price__price">
+          <div
+            className="house_card_container__right__price__price"
+            ref={refCard}
+          >
             ₹ 1.5 Cr
           </div>
         </div>{" "}
