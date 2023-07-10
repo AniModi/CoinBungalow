@@ -1,0 +1,59 @@
+.land_list_page_container {
+    width: 100vw;
+    height: 100%;
+    &__banner {
+      width: 100vw;
+      height: 90vh;
+      background: url("https://img.freepik.com/free-photo/land-plot-with-nature-landscape-location-pin_23-2149937933.jpg?w=1060&t=st=1688984838~exp=1688985438~hmac=0c48682f34b6bbe29b8b1d8fbf03c8dcec515b69daa229f960f65ff62cb33c4c")
+        no-repeat center 20%;
+      background-size: cover;
+      position: relative;
+    }
+    &__searchbox_section {
+      width: 100vw;
+      height: 20vh;
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 3rem;
+      &__searchbox {
+        width: 40%;
+        height: 20%;
+        input {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            padding: 0 10px;
+            margin: 10px 0;
+          }
+      }
+      &__search_btn_container {
+          width: 10%;
+          height: 20%;
+        button {
+          height: 100%;
+          width: 100%;
+          border-radius: 10px;
+          border: none;
+          outline: none;
+          padding: 0 10px;
+          margin: 10px 0;
+          background-color: #f5f5f5;
+          color: #000;
+          font-weight: 600;
+          cursor: pointer;
+        }
+      }
+    }
+    &__house_list_section {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      min-height: 100vh;
+    }
+  }
+  
