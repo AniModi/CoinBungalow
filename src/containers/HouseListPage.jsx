@@ -8,7 +8,6 @@ const HouseListPage = () => {
   const refBanner = useRef(true);
   const isInViewBanner = useInView(refBanner);
   const bannerAnimateControl = useAnimation();
-
   useEffect(() => {
     if (isInViewBanner) {
       bannerAnimateControl.stop();
