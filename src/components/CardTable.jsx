@@ -14,7 +14,7 @@ const CardTable = ({ props }) => {
                 </div>
                 <div className="card_table_container__right">
                     {columns.map((column) => {
-                        return <div className="card_table_container__left__entry">{column}</div>
+                        return <div className="card_table_container__right__entry">{column}</div>
                     })}
                 </div>
             </div>

@@ -27,18 +27,18 @@ const LandingPageSection = ({props}) => {
     useEffect(() => {
         if (isInViewSection) {
             sectionControl.stop();
-            sectionControl.start({ opacity: 1, y: 0 });
+            sectionControl.start({ opacity: 1, x: 0 });
         }
         if (!isInViewSection) {
             sectionControl.stop();
-            sectionControl.start({ opacity: 0, y: 200 });
+            sectionControl.start({ opacity: 0, x: 200 });
         }
     }, [isInViewSection, sectionControl]);
     return (
         <>
         <motion.div
           className="landing_page_section"
-          initial={{ opacity: 0, y: 200 }}
+          initial={{ opacity: 0, x: 200 }}
           animate={sectionControl}
           transition={{ duration: 1 }}
         >

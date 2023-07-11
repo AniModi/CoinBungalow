@@ -4,6 +4,7 @@ import LandingPage from './containers/LandingPage';
 import HouseListPage from './containers/HouseListPage.jsx';
 import LandListPage from './containers/LandListPage';
 import { useEffect } from 'react';
+import InvestPage from './containers/InvestPage';
 
 function App() {
   const {pathname} = useLocation();
@@ -16,6 +17,7 @@ function App() {
       <Route exact path="/" element={<LandingPage />} />
       <Route exact path="/buy-house" element={<HouseListPage />} />
       <Route exact path="/buy-land" element={<LandListPage />} />
+      <Route exact path="/invest" element={<InvestPage />} />
       </Routes>
   );
 }

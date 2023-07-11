@@ -1,0 +1,70 @@
+.slideshow_card_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    background: rgb(0, 0, 0);
+    color: white;
+    &__left {
+      width: 40%;
+      height: 80%;
+      display: flex;
+      padding: 1rem;
+      align-items: center;
+      justify-content: center;
+      &__image_container {
+        width: 90%;
+        aspect-ratio: 1;
+        &__image {
+          width: 100%;
+          height: 100%;
+          border-radius: 1rem;
+        }
+      }
+    }
+    &__right {
+      padding: 1rem;
+      width: 60%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      &__title_container {
+        height: 30%;
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        &__title {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 4rem;
+          font-weight: 600;
+        }
+      }
+      &__description {
+        height: 50%;
+        width: 100%;
+        font-size: 25px;
+      }
+      &__price {
+        height: 20%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        font-size: 3rem;
+        &__title {
+          font-weight: 600;
+          width: 50%;
+          height: 100%;
+        }
+        &__price {
+          width: 50%;
+          height: 100%;
+        }
+      }
+    }
+  }

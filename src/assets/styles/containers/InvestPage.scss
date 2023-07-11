@@ -1,0 +1,26 @@
+.invest_page_container {
+    width: 100vw;
+    height: 100%;
+    margin-top: 60px;
+    &__new_arrivals{
+        width: 100vw;
+        height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &__container {
+            padding: 1rem;
+            width: 95%;
+            height: 100%;
+            position: relative;
+        }
+    }
+    &__card_list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 3rem;
+        gap: 3rem;
+    }
+}
