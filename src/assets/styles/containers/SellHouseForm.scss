@@ -1,0 +1,51 @@
+.sell_house_form_container {
+    margin-top: 60px;
+    width: 100vw;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    padding: 1rem;
+    &_left {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        padding: 1rem;
+        &_image {
+            width: 100%;
+            height: 100%;
+            background: url("https://img.freepik.com/free-vector/real-estate-searching-with-smhttps://img.freepik.com/free-vector/landing-page-house-searching-concept_52683-25081.jpg?w=740&t=st=1689082066~exp=1689082666~hmac=d1d84bf6699db3e01214cfa800a2072a51b9f407a38c45f1b81c5712972c309f");
+            background-size: cover;
+            background-position: center center;
+        }
+    }
+    &_right {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        &_form_container {
+            width: 80%;
+            height: 100%;
+            padding: 3rem;
+            background-color: rgb(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            &_button {
+                width: 80%;
+                height: 40px;
+                border-radius: 1rem;
+            }
+        }
+    }
+}

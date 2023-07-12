@@ -8,13 +8,13 @@ const CardTable2 = ({ props }) => {
         <>
             <div className="card_table2_container">
                 <div className="card_table2_container__left">
-                    {rows.map((row) => {
-                        return <div className="card_table2_container__left__entry">{row}</div>
+                    {rows.map((row, index) => {
+                        return <div className="card_table2_container__left__entry" key = {row + " " + index}>{row}</div>
                     })}
                 </div>
                 <div className="card_table2_container__right">
-                    {columns.map((column) => {
-                        return <div className="card_table2_container__right__entry">{column}</div>
+                    {columns.map((column, index) => {
+                        return <div className="card_table2_container__right__entry" key = {column + " " + index}>{column}</div>
                     })}
                 </div>
             </div>

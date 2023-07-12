@@ -1,35 +1,72 @@
 .navbar_container {
-    width: 100vw;
-    height: 60px;
-    color: white;
-    background-color: #19253f49;
-    position: absolute;
-    top: 0;
+  width: 100vw;
+  height: 60px;
+  color: white;
+  background-color: #19253f49;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  &__left {
+    width: 50%;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-left: 2rem;
+    cursor: pointer;
+  }
+  &__right {
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    justify-content: flex-end;
+    &__circle {
+      margin-right: 2rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      border-radius: 100%;
+      background-color: #fff;
+      height: 50px;
+      width: 50px;
+    }
+  }
+  &__menu {
+    margin-top: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: 10;
-    &__left {
-        width: 50%;
-        font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    &__hide {
+      display: none;
+    }
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      &__item {
+        font-size: 2rem;
         font-weight: 700;
-        padding-left: 2rem;
+        margin-bottom: 2rem;
         cursor: pointer;
-    }
-    &__right {
-        width: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        justify-content: flex-end;
-        &__circle {
-            margin-right: 2rem;
-            font-size: 1.5rem;
-            cursor: pointer;
-            border-radius: 100%;
-            background-color: #fff;
-            height: 50px;
-            width: 50px;
+        text-decoration: none;
+        color: white;
+        &:hover {
+            text-decoration: underline;
         }
+      }
     }
+  }
 }
