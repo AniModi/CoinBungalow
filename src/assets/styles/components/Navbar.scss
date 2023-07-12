@@ -18,6 +18,7 @@
   }
   &__right {
     width: 50%;
+    margin-right: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,7 +27,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 2rem;
+        margin-right: 7rem;
       font-size: 1.5rem;
       color: green;
       background-color: rgba(255,255,255, 0.2);
@@ -39,7 +40,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 2rem;
+        margin-right: 7rem;
         font-size: 1.5rem;
         color: #fff;
         background-color: rgba(255,255,255, 0.2);

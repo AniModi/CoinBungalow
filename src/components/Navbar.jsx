@@ -1,27 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/components/Navbar.scss";
 import { Link } from "react-router-dom";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Navbar = () => {
   const [menu, setMenu] = useState("navbar_container__menu__hide");
-  const [isConnected, setIsConnected] = useState(false);
-  useEffect(() => {
-    if (window.ethereum) {
-      window.ethereum
-        .enable()
-        .then(() => {
-          setIsConnected(true);
-        })
-        .catch(() => {
-          setIsConnected(false);
-        });
-    } else {
-      setIsConnected(false);
-    }
-  }, [isConnected]);
-  const connect = () => {
-    console.log("Connect clicked");
-  };
+  
   const handleMenu = () => {
     if (menu === "navbar_container__menu__hide")
       setMenu("navbar_container__menu");
@@ -35,18 +19,7 @@ const Navbar = () => {
           Menu
         </div>
         <div className="navbar_container__right">
-          {isConnected ? (
-            <div className="navbar_container__right__connected">
-              Connected!
-            </div>
-          ) : (
-            <div
-              className="navbar_container__right__disconnected"
-              onClick={connect}
-            >
-              Connect
-            </div>
-          )}
+        <ConnectButton />
         </div>
         <div className={menu}>
           <div className="navbar_container__menu__content">

@@ -7,6 +7,36 @@ import { useEffect } from 'react';
 import InvestPage from './containers/InvestPage';
 import SellHouseForm from './containers/SellHouseForm';
 import MyNFTPage from './containers/MyNFTPage';
+// wagmi ---
+import '@rainbow-me/rainbowkit/styles.css';
+import {
+  getDefaultWallets,
+  RainbowKitProvider
+} from '@rainbow-me/rainbowkit';
+import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+import { publicProvider } from 'wagmi/providers/public';
+import {
+  polygonMumbai, hardhat
+} from 'wagmi/chains';
+const { chains, publicClient } = configureChains(
+  [polygonMumbai, hardhat],
+  [
+    publicProvider()
+  ]
+);
+
+const { connectors } = getDefaultWallets({
+  appName: 'CB',
+  projectId: 'cbabb06b3a049fce0e9231318d94998e',
+  chains
+});
+
+const wagmiConfig = createConfig({
+  autoConnect: true,
+  connectors,
+  publicClient
+})
+// ----
 
 function App() {
   const {pathname} = useLocation();
@@ -14,6 +44,8 @@ function App() {
     document.body.scrollTo(0, 0);
   }, [pathname]);
   return (
+    <WagmiConfig config={wagmiConfig}>
+      <RainbowKitProvider chains={chains}>
       <Routes>
       <Route exact path="/" element={<LandingPage />} />
       <Route exact path="/buy-house" element={<HouseListPage />} />
@@ -25,6 +57,8 @@ function App() {
       <Route exact path="/borrow" element={<InvestPage />} />
       <Route exact path="/add-nft" element={<SellHouseForm />} />
       </Routes>
+      </RainbowKitProvider>
+    </WagmiConfig >
   );
 }
 
