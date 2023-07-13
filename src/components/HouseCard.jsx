@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "../assets/styles/components/HouseCard.scss";
 import CardTable from "./CardTable";
 import { motion, useAnimation, useInView } from "framer-motion";
+import {useLocation, useNavigate } from "react-router-dom";
 
 const HouseCard = ({ props }) => {
   const { image, data, title, address, location, value } = props;
@@ -10,6 +11,22 @@ const HouseCard = ({ props }) => {
   const isInView = useInView(refCard);
   const isInViewEnd = useInView(refCardEnd);
   const cardAnimateControl = useAnimation();
+
+  const {pathname} = useLocation();
+  const navigate = useNavigate();
+
+  const handleDetail = () => {
+    console.log(pathname);
+    if(pathname === "/buy-house" || pathname === "/buy-land") {
+      navigate("/buy/:id");
+    }
+    else if(pathname === "/sell-house" || pathname === "/sell-land" || pathname === "/my-nfts") {
+      navigate("/my-nfts/:id");
+    }
+    else if(pathname === "/lend") {
+      navigate("/lend/:id");
+    }
+  };
 
   useEffect(() => {
     if (isInView) {
@@ -34,6 +51,7 @@ const HouseCard = ({ props }) => {
       initial={{ opacity: 0, x: -100 }}
       duration={0.5}
       ref={refCardEnd}
+      onClick={handleDetail}
     >
       <div className="house_card_container__left">
         <div className="house_card_container__left__image_container">

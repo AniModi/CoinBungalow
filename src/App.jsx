@@ -23,6 +23,9 @@ import ProfileOffers from './components/ProfileOffers';
 import ProfilePendingLoans from './containers/ProfilePendingLoans';
 import ProfileLoanActions from './containers/ProfileLoanActions';
 import ProfilePropertyActions from './containers/ProfilePropertyActions';
+import MyCardDetailPage from './containers/MyCardDetailPage';
+import BuyCardDetailPage from './containers/BuyCardDetailPage';
+import LoanCardDetailPage from './containers/LoanCardDetailPage';
 const { chains, publicClient } = configureChains(
   [polygonMumbai, hardhat],
   [
@@ -66,6 +69,9 @@ function App() {
       <Route exact path="/profile/pending-loans" element={<ProfilePendingLoans />} />
       <Route exact path="/profile/loan-actions" element={<ProfileLoanActions />} />
       <Route exact path="/profile/property-actions" element={<ProfilePropertyActions />} />
+      <Route exact path="/my-nfts/:id" element={<MyCardDetailPage />} />
+      <Route exact path="/buy/:id" element={<BuyCardDetailPage />} />
+      <Route exact path="/lend/:id" element={<LoanCardDetailPage />} />
       </Routes>
       </RainbowKitProvider>
     </WagmiConfig >

@@ -2,9 +2,24 @@ import React from "react";
 import "../assets/styles/components/SLideshowCard.scss";
 import CardTable from "./CardTable";
 import { motion } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 const SLideshowCard = ({ props, key }) => {
   const { image, data } = props;
+  const {pathname} = useLocation();
+  const navigate = useNavigate();
 
+  const handleDetail = () => {
+    console.log(pathname);
+    if(pathname === "/buy-house" || pathname === "/buy-land") {
+      navigate("/buy/:id");
+    }
+    else if(pathname === "/sell-house" || pathname === "/sell-land" || pathname === "/my-nfts") {
+      navigate("/my-nfts/:id");
+    }
+    else if(pathname === "/lend") {
+      navigate("/lend/:id");
+    }
+  };
   return (
       <motion.div
         className="slideshow_card_container"
@@ -12,6 +27,7 @@ const SLideshowCard = ({ props, key }) => {
         animate={{ x: 0, opacity: 1 }}
         transition={{ease: "easeInOut"}}
         key={key}
+        onClick={handleDetail}
       >
         <div className="slideshow_card_container__left">
           <div className="slideshow_card_container__left__image_container">
