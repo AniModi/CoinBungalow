@@ -1,0 +1,28 @@
+.sidebar_container {
+    position: absolute;
+    background-color: #1A1C22;
+    width: 250px;
+    height: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    padding: 2rem;
+    padding-bottom: 0;
+    gap: 1.5rem;
+    &__items {
+        text-decoration: none;
+        color: white;
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+    &__items_active {
+        text-decoration: none;
+        color: #1FCB4f;
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}

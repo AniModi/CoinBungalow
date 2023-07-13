@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../assets/styles/components/Navbar.scss";
 import { Link } from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -81,7 +81,7 @@ const Navbar = () => {
             </Link>
             <Link
               className="navbar_container__menu__content__item"
-              to={"/my-profile"}
+              to={"/profile/dashboard"}
               onClick={handleMenu}
             >
               My Profile

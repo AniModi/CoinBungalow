@@ -1,0 +1,75 @@
+
+$fill-color: #1FCB4f;
+$background-color: #1A1C22;
+$inner-background-color: #282C35;
+$text-color: #9E9E9E;
+
+.dashboard_box_container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: $background-color;
+  border-radius: 1rem;
+  color: white;
+
+  .dashboard_box_container__box_left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33.33%;
+    height: 100%;
+
+    .inner_box {
+      width: 60%;
+      height: 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $inner-background-color;
+      border-radius: 3rem;
+
+      svg {
+        width: 50%;
+        height: 50%;
+        fill: $fill-color;
+      }
+    }
+  }
+
+  .dashboard_box_container__box_right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 66.67%;
+    height: 100%;
+
+    .box_type {
+      height: 50%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding-left: 1rem;
+
+      p {
+        color: $text-color;
+        font-size: 1.5rem;
+      }
+    }
+
+    .box_amount {
+      height: 50%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      p {
+        font-size: 2rem;
+      }
+    }
+  }
+}

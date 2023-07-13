@@ -1,0 +1,96 @@
+.pay_loan_box_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #282C35;
+  &__left {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__image_container {
+      width: 80%;
+      height: 80%;
+      &__image {
+        height: 100%;
+        width: 100%;
+        border-radius: 2rem;
+      }
+    }
+  }
+  &__right {
+    width: 50%;
+    height: 100%;
+    &__info {
+      width: 100%;
+      height: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &__table {
+        font-size: 1.7em;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        width: 100%;
+        color: white;
+        gap: 1rem;
+
+        &__rows {
+          color: #707070;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+        &__cols {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+      }
+    }
+    &__payment {
+        height: 50%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+  }
+}
+
+.pay_loan_box_container__right__payment__input {
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+  
+  .pay_loan_box_container__right__payment__button {
+    background-color: #1FCB4F;
+    height: 40px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .pay_loan_box_container__right__payment__button_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }

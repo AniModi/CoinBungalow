@@ -18,6 +18,11 @@ import { publicProvider } from 'wagmi/providers/public';
 import {
   polygonMumbai, hardhat
 } from 'wagmi/chains';
+import ProfileDashBoard from './containers/ProfileDashBaord';
+import ProfileOffers from './components/ProfileOffers';
+import ProfilePendingLoans from './containers/ProfilePendingLoans';
+import ProfileLoanActions from './containers/ProfileLoanActions';
+import ProfilePropertyActions from './containers/ProfilePropertyActions';
 const { chains, publicClient } = configureChains(
   [polygonMumbai, hardhat],
   [
@@ -56,6 +61,11 @@ function App() {
       <Route exact path="/lend" element={<InvestPage />} />
       <Route exact path="/borrow" element={<InvestPage />} />
       <Route exact path="/add-nft" element={<SellHouseForm />} />
+      <Route exact path="/profile/dashboard" element={<ProfileDashBoard />} />
+      <Route exact path="/profile/offers" element={<ProfileOffers />} />
+      <Route exact path="/profile/pending-loans" element={<ProfilePendingLoans />} />
+      <Route exact path="/profile/loan-actions" element={<ProfileLoanActions />} />
+      <Route exact path="/profile/property-actions" element={<ProfilePropertyActions />} />
       </Routes>
       </RainbowKitProvider>
     </WagmiConfig >
