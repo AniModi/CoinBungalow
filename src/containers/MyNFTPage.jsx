@@ -1,22 +1,70 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/styles/containers/MyNFTPage.scss";
 import HouseCard from "../components/HouseCard";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import { Polybase } from "@polybase/client";
+import { getAccount, readContract } from "wagmi/actions";
+import { PnftAddress, PnftAbi } from "../constants";
+
+const db = new Polybase({
+  defaultNamespace: "pk/0x1a57dc69d2e8e6938a05bdefbebd62622ddbb64038f7347bd4fe8beb37b9bf40d5e8b62eaf9de36cbff52904b7f81bff22b29716021aaa8c11ee552112143259/CB",
+});
+const db_metadata = db.collection('PropertyNFTMetadata')
 
 const MyNFTPage = () => {
-  const props = [
-//     {
-//     image:
-//       "https://img.freepik.com/free-photo/modern-residential-district-with-green-roof-balcony-generated-by-ai_188544-10276.jpg?w=1380&t=st=1688985038~exp=1688985638~hmac=e07c8fd49bea88bb8dd3df993178ec1c2b9c9c434df44392629f40e5dc2b4bb4",
-//     title: "House",
-//     address: "1234 Street",
-//     data: {
-//       rows: ["Bedrooms", "Bathrooms", "Area"],
-//       columns: ["3", "2", "2000 sqft"],
-//     },
-//   }
-  ];
+  const account = getAccount()
+  const [image, setImage] = useState('')
+
+  const [props, setProps] = useState([]);
+
+  const loadMetadata = async (tokenIds) => {
+    let props = [];
+    for(let i=0; i<tokenIds.length; i++){
+      const _tokenId = tokenIds[i].toString()
+      const { data } = await db_metadata.record(_tokenId).get()
+      props.push({
+        image: data.image,
+        title: data.type,
+        address: data.address,
+        location: data.location,
+        value: data.value,
+        data: {
+           rows: ['Age', 'Area', "Description"],
+           columns: [data.age, data.size+' sqft', data.description]
+        }
+        })
+      }
+      setProps(props)
+  }
+
+  useEffect(() => {
+    async function loadNfts(){
+      let nfts = await readContract({
+        address: PnftAddress,
+        abi: PnftAbi,
+        functionName: "balanceOf",
+        args: [account.address]
+      })
+      if(nfts.toString() === '0') return;
+      nfts = parseInt(nfts.toString())
+      let tokenIds = []
+      for(let i = 0; i < nfts; i++){
+        const _tokenId = await readContract({
+          address: PnftAddress,
+          abi: PnftAbi,
+          functionName: "tokenOfOwnerByIndex",
+          args: [account.address, i]
+        })
+        tokenIds.push(_tokenId)
+      }
+      
+      await loadMetadata(tokenIds);
+    }
+    // loadNfts()
+    loadMetadata([0])
+  }, []);
+
   return (
     <>
     <Navbar></Navbar>

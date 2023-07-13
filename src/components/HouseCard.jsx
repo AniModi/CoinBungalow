@@ -4,7 +4,7 @@ import CardTable from "./CardTable";
 import { motion, useAnimation, useInView } from "framer-motion";
 
 const HouseCard = ({ props }) => {
-  const { image, data, title, address } = props;
+  const { image, data, title, address, location, value } = props;
   const refCard = useRef(null);
   const refCardEnd = useRef(null);
   const isInView = useInView(refCard);
@@ -52,6 +52,9 @@ const HouseCard = ({ props }) => {
           <div className="house_card_container__right__title_container__subtitle">
             {address}
           </div>
+          <div className="house_card_container__right__title_container__subtitle">
+            {location}
+          </div>
         </div>{" "}
         <div className="house_card_container__right__description">
           <div className="house_card_container__right__description__table">
@@ -64,7 +67,7 @@ const HouseCard = ({ props }) => {
             className="house_card_container__right__price__price"
             ref={refCard}
           >
-            ₹ 1.5 Cr
+            {value} MATIC
           </div>
         </div>{" "}
       </div>
