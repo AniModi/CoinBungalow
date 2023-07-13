@@ -5,12 +5,10 @@ async function main() {
 
   const PropertyNFT = await ethers.getContractFactory("PropertyNFT");
   const propertyNFT = await PropertyNFT.deploy();
-  await propertyNFT.deployed();
   console.log("PropertyNFT address:", propertyNFT.target);
 
   const PropertyDeal = await ethers.getContractFactory("PropertyDeal")
   const propertyDeal = await PropertyDeal.deploy(propertyNFT.target);
-  await propertyDeal.deployed();
   console.log("PropertyDeal address:", propertyDeal.target);
 }
 
