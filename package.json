@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@lighthouse-web3/sdk": "^0.2.5",
     "@openzeppelin/contracts": "^4.9.2",
+    "@polybase/client": "^0.6.5",
     "@rainbow-me/rainbowkit": "^1.0.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
