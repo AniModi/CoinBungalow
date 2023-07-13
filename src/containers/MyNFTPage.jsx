@@ -14,15 +14,14 @@ const db_metadata = db.collection('PropertyNFTMetadata')
 
 const MyNFTPage = () => {
   const account = getAccount()
-  const [image, setImage] = useState('')
-
   const [props, setProps] = useState([]);
 
   const loadMetadata = async (tokenIds) => {
     let props = [];
     for(let i=0; i<tokenIds.length; i++){
       const _tokenId = tokenIds[i].toString()
-      const { data } = await db_metadata.record(_tokenId).get()
+      const recordId = PnftAddress+_tokenId
+      const { data } = await db_metadata.record(recordId).get()
       props.push({
         image: data.image,
         title: data.type,
@@ -61,8 +60,8 @@ const MyNFTPage = () => {
       
       await loadMetadata(tokenIds);
     }
-    // loadNfts()
-    loadMetadata([0])
+    loadNfts()
+    // loadMetadata([0])
   }, []);
 
   return (

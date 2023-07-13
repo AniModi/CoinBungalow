@@ -162,7 +162,7 @@ const SellHouseForm = () => {
             abi: PnftAbi,
             functionName: "totalSupply",
         });
-        const recordId = (parseInt(totalSupply.toString()) +1).toString();
+        const recordId = PnftAddress+(parseInt(totalSupply.toString()) +1).toString();
         const recordData = await db_metadata.create([
             recordId,
             'Property NFT ',
