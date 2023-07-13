@@ -1,6 +1,7 @@
 import React from "react";
 import "../assets/styles/containers/LoanCardDetailPage.scss";
 import DetailCardDetails from "../components/DetailCardDetails";
+import Navbar from "../components/Navbar";
 
 const LoanCardDetailPage = () => {
   const handleLend = () => {};
@@ -18,6 +19,7 @@ const LoanCardDetailPage = () => {
   };
   return (
     <>
+      <Navbar></Navbar>
       <div className="loan_card_detail_container">
         <DetailCardDetails buttons={<Buttons></Buttons>}></DetailCardDetails>
       </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../assets/styles/containers/MyCardDetailPage.scss";
 import DetailCardDetails from "../components/DetailCardDetails";
+import Navbar from "../components/Navbar";
 
 const MyCardDetailPage = () => {
     const loanId = "1";
@@ -26,6 +27,7 @@ const MyCardDetailPage = () => {
   };
   return (
     <>
+      <Navbar></Navbar>
       <div className="my_card_detail_page_container">
         <DetailCardDetails buttons={<Buttons></Buttons>} collateral = {collateral} handleClose = {handleClose} loanId = {loanId}></DetailCardDetails>
       </div>

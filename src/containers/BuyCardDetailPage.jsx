@@ -1,6 +1,7 @@
 import React from "react";
 import "../assets/styles/containers/BuyCardDetailPage.scss";
 import DetailCardDetails from "../components/DetailCardDetails";
+import Navbar from "../components/Navbar";
 
 const BuyCardDetailPage = () => {
   const handleInterest = () => {};
@@ -19,6 +20,7 @@ const BuyCardDetailPage = () => {
   };
   return (
     <>
+      <Navbar></Navbar>
       <div className="buy_card_detail_container">
       <DetailCardDetails buttons={<Buttons></Buttons>}></DetailCardDetails>
       </div>

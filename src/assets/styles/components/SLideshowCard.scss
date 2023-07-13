@@ -7,6 +7,10 @@
     border-radius: 1rem;
     background: rgb(0, 0, 0);
     color: white;
+    cursor: pointer;
+    &:hover {
+        scale: 1.01;
+    }
     &__left {
       width: 40%;
       height: 80%;
