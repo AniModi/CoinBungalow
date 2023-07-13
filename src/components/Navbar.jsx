@@ -25,6 +25,13 @@ const Navbar = () => {
           <div className="navbar_container__menu__content">
             <Link
               className="navbar_container__menu__content__item"
+              to={"/"}
+              onClick={handleMenu}
+            >
+              Home
+            </Link>
+            <Link
+              className="navbar_container__menu__content__item"
               to={"/my-nfts"}
               onClick={handleMenu}
             >

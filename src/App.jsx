@@ -59,7 +59,7 @@ function App() {
       <Route exact path="/buy-land" element={<LandListPage />} />
       <Route exact path="/sell-land" element={<MyNFTPage />} />
       <Route exact path="/lend" element={<InvestPage />} />
-      <Route exact path="/borrow" element={<InvestPage />} />
+      <Route exact path="/borrow" element={<MyNFTPage />} />
       <Route exact path="/add-nft" element={<SellHouseForm />} />
       <Route exact path="/profile/dashboard" element={<ProfileDashBoard />} />
       <Route exact path="/profile/offers" element={<ProfileOffers />} />
