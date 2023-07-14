@@ -58,7 +58,7 @@ const ProfilePendingLoans = () => {
       <Sidebar></Sidebar>
       <div className="profile_pending_loans_container">
         <div className="profile_pending_loans_container__list">
-          <ProfileList data={data} header={header}></ProfileList>
+          <ProfileList data={data} header={header} title="Pending Loans"></ProfileList>
         </div>
         <AnimatePresence mode="wait">
           {showPayment && (

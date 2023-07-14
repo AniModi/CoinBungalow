@@ -65,7 +65,7 @@ const ProfileOffers = () => {
       <Sidebar></Sidebar>
       <div className="profile_offers_container">
         <div className="profile_offers_container__list">
-          <ProfileList data={data} header={header}></ProfileList>
+          <ProfileList data={data} header={header} title="Offers"></ProfileList>
         </div>
       </div>
     </>

@@ -48,7 +48,7 @@ const ProfileLoanActions = () => {
         <Sidebar></Sidebar>
         <div className="profile_loan_actions_container">
         <div className="profile_loan_actions_container__list">
-          <ProfileList data={data} header={header}></ProfileList>
+          <ProfileList data={data} header={header} title = "Applied Loans"></ProfileList>
         </div>
         </div>
         </>
