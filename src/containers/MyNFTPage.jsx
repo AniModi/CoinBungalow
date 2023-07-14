@@ -23,6 +23,7 @@ const MyNFTPage = () => {
       const recordId = PnftAddress+_tokenId
       const { data } = await db_metadata.record(recordId).get()
       props.push({
+        id: recordId,
         image: data.image,
         title: data.type,
         address: data.address,

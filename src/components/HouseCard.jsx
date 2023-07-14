@@ -5,7 +5,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import {useLocation, useNavigate } from "react-router-dom";
 
 const HouseCard = ({ props }) => {
-  const { image, data, title, address, location, value } = props;
+  const { id, image, data, title, address, location, value } = props;
   const refCard = useRef(null);
   const refCardEnd = useRef(null);
   const isInView = useInView(refCard);
@@ -18,13 +18,13 @@ const HouseCard = ({ props }) => {
   const handleDetail = () => {
     console.log(pathname);
     if(pathname === "/buy-house" || pathname === "/buy-land") {
-      navigate("/buy/:id");
+      navigate(`/buy/${id}`);
     }
     else if(pathname === "/sell-house" || pathname === "/sell-land" || pathname === "/my-nfts") {
-      navigate("/my-nfts/:id");
+      navigate(`/my-nfts/${id}`);
     }
     else if(pathname === "/lend") {
-      navigate("/lend/:id");
+      navigate(`/lend/${id}`);
     }
   };
 

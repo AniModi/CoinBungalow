@@ -1,13 +1,19 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import "../assets/styles/components/DetailCardDetails.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import GetLoanBox from "./GetLoanBox";
+import { Polybase } from "@polybase/client";
 
-const DetailCardDetails = ({buttons, collateral, handleClose, loanId}) => {
-  const image =
-    "https://img.freepik.com/free-photo/modern-residential-district-with-green-roof-balcony-generated-by-ai_188544-10276.jpg?w=1380&t=st=1688985038~exp=1688985638~hmac=e07c8fd49bea88bb8dd3df993178ec1c2b9c9c434df44392629f40e5dc2b4bb4";
+const db = new Polybase({
+  defaultNamespace: "pk/0x1a57dc69d2e8e6938a05bdefbebd62622ddbb64038f7347bd4fe8beb37b9bf40d5e8b62eaf9de36cbff52904b7f81bff22b29716021aaa8c11ee552112143259/CB",
+});
 
-  const entries = [
+const db_metadata = db.collection("PropertyNFTMetadata");
+
+const DetailCardDetails = ({recordId, buttons, collateral, handleClose, loanId}) => {
+  const [image, setImage] = useState('')
+  const [entries, setEntries] = useState([
     ["Bedrooms", "3"],
     ["Bathrooms", "2"],
     ["Area", "2000 sqft"],
@@ -16,7 +22,37 @@ const DetailCardDetails = ({buttons, collateral, handleClose, loanId}) => {
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus ducimus ullam, commodi excepturi ipsa dolor exercitationem, natus veritatis maxime reiciendis ex iure dolorum minus iste. Voluptatibus aut laborum molestiae facilis.",
     ],
     ["Price", "1000"],
-  ];
+  ]);
+
+  useEffect(() => {
+    async function loadMetadata(){
+     const { data } = await db_metadata.record(recordId).get()
+     setImage(data.image)
+     let entries=[], entry=[]
+      entry = ["Property", data.type]
+      entries.push(entry)
+      entry = ["Address", data.address]
+      entries.push(entry)
+      entry = ["State, Country", data.location]
+      entries.push(entry)
+      entry = ["Pin", data.pincode]
+      entries.push(entry)
+      entry=['Age', data.age]
+      entries.push(entry)
+      entry=['Area', data.size+' sqft']
+      entries.push(entry)
+      entry=['Description', data.description]
+      entries.push(entry)
+      entry=['Estimated value', data.value+' MATIC']
+      entries.push(entry)
+      entry=['Google maps', <a href={data.maps} style={{color: 'lightskyblue'}}>View</a>]
+      entries.push(entry)
+      setEntries(entries)
+
+    }
+    loadMetadata()
+  }, []);
+
   return (
     <>
       <div className="detail_card_details_container">

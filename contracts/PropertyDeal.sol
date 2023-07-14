@@ -20,12 +20,26 @@ contract PropertyDeal{
     mapping(uint256=>address) public seller;
     mapping(uint256=>address) public buyer;
 
+    struct ListedProperty{
+      uint256 tokenId;
+      address seller;
+        uint256 value;
+    }
+
+    ListedProperty[] public listedProperties;
+
+    function getListedProperties() public view returns (ListedProperty[] memory) {
+        return listedProperties;
+    }
+
     function list(uint256 tokenId, uint256 value) public {
         require(IERC721(nftAddress).ownerOf(tokenId) == msg.sender, "Not the owner of this NFT");
         isListed[tokenId] = true;
         propertyValue[tokenId] = value;
         IERC721(nftAddress).transferFrom(msg.sender, address(this), tokenId);
         seller[tokenId]=msg.sender;
+        ListedProperty memory listedProperty = ListedProperty(tokenId, msg.sender, value);
+        listedProperties.push(listedProperty);
         emit Listed(tokenId, value);
     }
     
