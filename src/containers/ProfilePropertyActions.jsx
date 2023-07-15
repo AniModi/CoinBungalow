@@ -3,7 +3,7 @@ import "../assets/styles/containers/ProfilePropertyActions.scss";
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import ProfileList from '../components/ProfileList';
-import { readContract, getAccount } from 'wagmi/actions'
+import { readContract, writeContract, getAccount } from 'wagmi/actions'
 import { PdealAbi, PdealAddress, PnftAddress } from '../constants';
 import { Polybase } from "@polybase/client";
 const db = new Polybase({
@@ -22,23 +22,31 @@ const ProfilePropertyActions = () => {
         className="profile_loan_actions_container__list__reject_button"
         onClick={handleClick}
       >
-        Cancel
+        Unlist
       </button>
     );
   };
     
   const [data, setData] = useState([
-    [
-      "Property",
-      "Address",
-      "Location",
-      "Value",
-      <Button propertyID={0} />,
-    ],
+    // [
+    //   "Property",
+    //   "Address",
+    //   "Location",
+    //   "Value",
+    //   <Button propertyID={0} />,
+    // ],
   ]);
 
-  const handleCancel = (propertyID) => {
-    alert("Cancel Property " + propertyID);
+  const handleCancel = async (propertyID) => {
+    try{
+      await writeContract({
+        address: PdealAddress,
+        abi: PdealAbi,
+        functionName: "unlist",
+        args: [propertyID],
+      })
+    }
+    catch(err){ console.log(err) }
   };
 
   const loadMetadata = async (tokenIds) => {
@@ -60,7 +68,7 @@ const ProfilePropertyActions = () => {
           functionName: "getListedProperties",
        })
 
-       const userProps = listedProperties.filter(async (property) => {
+       const userProps = await Promise.all(listedProperties.map(async (property) => {
         const _tokenId = property.tokenId
         const isListed = await readContract({
           address: PdealAddress,
@@ -68,9 +76,11 @@ const ProfilePropertyActions = () => {
           functionName: "isListed",
           args: [_tokenId],
         })
-        if(isListed && property.seller === account.address)
-        return property;
-      })
+        if (isListed && property.seller === account.address)
+        return property
+      }))
+        
+        if(userProps[0] === undefined) return;
         const tokenIds = userProps.map((property) => property.tokenId)
         await loadMetadata(tokenIds)
        }
@@ -92,7 +102,7 @@ const ProfilePropertyActions = () => {
         <Sidebar></Sidebar>
         <div className="profile_pending_loans_container">
         <div className="profile_pending_loans_container__list">
-          <ProfileList data={data} header={header}></ProfileList>
+          <ProfileList data={data} header={header} title="Listed properties"></ProfileList>
         </div>
         </div>
         </>

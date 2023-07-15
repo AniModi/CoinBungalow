@@ -26,15 +26,17 @@ const HouseListPage = () => {
     }
   }, [isInViewBanner, bannerAnimateControl]);
 
-  const [props, setProps] = useState([{
-    image: "https://img.freepik.com/free-photo/modern-residential-district-with-green-roof-balcony-generated-by-ai_188544-10276.jpg?w=1380&t=st=1688985038~exp=1688985638~hmac=e07c8fd49bea88bb8dd3df993178ec1c2b9c9c434df44392629f40e5dc2b4bb4",
-    title: "House",
-    address: "1234 Street",
-    data: {
-      rows: ["Bedrooms", "Bathrooms", "Area"],
-      columns: ["3", "2", "2000 sqft"],
-    },
-  }]);
+  const [props, setProps] = useState([
+  //   {
+  //   image: "https://img.freepik.com/free-photo/modern-residential-district-with-green-roof-balcony-generated-by-ai_188544-10276.jpg?w=1380&t=st=1688985038~exp=1688985638~hmac=e07c8fd49bea88bb8dd3df993178ec1c2b9c9c434df44392629f40e5dc2b4bb4",
+  //   title: "House",
+  //   address: "1234 Street",
+  //   data: {
+  //     rows: ["Bedrooms", "Bathrooms", "Area"],
+  //     columns: ["3", "2", "2000 sqft"],
+  //   },
+  // }
+]);
 
   const loadMetadata = async (tokenIds) => {
     let props = [];
@@ -60,11 +62,23 @@ const HouseListPage = () => {
 
   useEffect(() => {
     async function loadList(){
-     const listedProperties = await readContract({
+     const ListedProperties = await readContract({
         address: PdealAddress,
         abi: PdealAbi,
         functionName: "getListedProperties",
      })
+     const listedProperties = await Promise.all(ListedProperties.map(async (property) => {
+      const _tokenId = property.tokenId
+      const isListed = await readContract({
+        address: PdealAddress,
+        abi: PdealAbi,
+        functionName: "isListed",
+        args: [_tokenId],
+      })
+      if (isListed)
+      return property
+    }))
+    if(listedProperties[0] === undefined) return;
       const tokenIds = listedProperties.map((property) => property.tokenId)
       if(tokenIds.length === 0) return;
       await loadMetadata(tokenIds)
