@@ -102,7 +102,7 @@ const ProfilePropertyActions = () => {
         <Sidebar></Sidebar>
         <div className="profile_pending_loans_container">
         <div className="profile_pending_loans_container__list">
-          <ProfileList data={data} header={header} title="Listed properties"></ProfileList>
+          <ProfileList data={data} header={header} title="Listed Properties"></ProfileList>
         </div>
         </div>
         </>
