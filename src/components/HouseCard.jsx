@@ -20,7 +20,7 @@ const HouseCard = ({ props }) => {
     if(pathname === "/buy-house" || pathname === "/buy-land") {
       navigate(`/buy/${id}`);
     }
-    else if(pathname === "/sell-house" || pathname === "/sell-land" || pathname === "/my-nfts") {
+    else if(pathname === "/sell-house" || pathname === "/sell-land" || pathname === "/my-nfts" || pathname === "/borrow") {
       navigate(`/my-nfts/${id}`);
     }
     else if(pathname === "/lend") {

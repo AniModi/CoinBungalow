@@ -11,7 +11,7 @@ const db = new Polybase({
 
 const db_metadata = db.collection("PropertyNFTMetadata");
 
-const DetailCardDetails = ({recordId, buttons, collateral, handleClose, loanId}) => {
+const DetailCardDetails = ({recordId, buttons, collateral, handleClose}) => {
   const [image, setImage] = useState('')
   const [entries, setEntries] = useState([
     ["Bedrooms", "3"],
@@ -37,7 +37,7 @@ const DetailCardDetails = ({recordId, buttons, collateral, handleClose, loanId})
       entries.push(entry)
       entry = ["Pin", data.pincode]
       entries.push(entry)
-      entry=['Age', data.age]
+      entry=['Property Age', data.age]
       entries.push(entry)
       entry=['Area', data.size+' sqft']
       entries.push(entry)
@@ -103,7 +103,7 @@ const DetailCardDetails = ({recordId, buttons, collateral, handleClose, loanId})
               transition={{ duration: 0.25 }}
               exit={{ opacity: 0 }}
             >
-              <GetLoanBox loanId={loanId} handleClose={handleClose} />
+              <GetLoanBox loanId={recordId} entries={entries} image={image} handleClose={handleClose} />
             </motion.div>
           )}
         </AnimatePresence>

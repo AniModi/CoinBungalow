@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chainlink/contracts": "^0.6.1",
     "@lighthouse-web3/sdk": "^0.2.5",
     "@openzeppelin/contracts": "^4.9.2",
     "@polybase/client": "^0.6.5",

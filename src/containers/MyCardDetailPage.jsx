@@ -17,7 +17,6 @@ const MyCardDetailPage = () => {
   const { pathname } = useLocation();
   const recordId = pathname.split("/")[2];
 
-    const loanId = "1";
     const [collateral, setCollateral] = useState(false);
     const handleClose = () => {
         setCollateral(false);
@@ -65,7 +64,7 @@ const MyCardDetailPage = () => {
     <>
       <Navbar></Navbar>
       <div className="my_card_detail_page_container">
-        <DetailCardDetails buttons={<Buttons></Buttons>} recordId = {recordId} collateral = {collateral} handleClose = {handleClose} loanId = {loanId}></DetailCardDetails>
+        <DetailCardDetails buttons={<Buttons></Buttons>} recordId = {recordId} collateral = {collateral} handleClose = {handleClose}></DetailCardDetails>
       </div>
     </>
   );

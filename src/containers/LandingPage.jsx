@@ -27,8 +27,8 @@ const LandingPage = () => {
       img: "https://i.imgur.com/53cIK90.png",
       url1: "/borrow",
       url2: "/lend",
-      text1: "Get Financing",
-      text2: "Invest",
+      text1: "Borrow",
+      text2: "Lend",
     },
     {
       title: "Want to deal in Land?",

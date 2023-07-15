@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import "../assets/styles/components/GetLoanBox.scss";
 
-const GetLoanBox = ({ loanId, handleClose }) => {
-  const [input, setInput] = useState({
+const GetLoanBox = ({ loanId, entries, image, handleClose }) => {
+  const tokenId = loanId.slice(42);
+  const defaultInputState = {
     amount: "",
     interest: "",
     duration: "",
-  });
+  }
+  const [input, setInput] = useState(defaultInputState);
   const handleInput = (e) => {
     setInput({
       ...input,
-      [e.target.type]: e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
   const props = [
@@ -25,14 +27,20 @@ const GetLoanBox = ({ loanId, handleClose }) => {
       },
     },
   ];
-  const handlePost = () => {};
+  const handlePost = async () => {
+    try{
+      
+      setInput(defaultInputState);
+    }
+    catch(err){ console.log(err)}
+  };
   return (
     <>
       <div className="get_loan_box_container">
         <div className="get_loan_box_container__left">
           <div className="get_loan_box_container__left__image_container">
             <img
-              src={props[0].image}
+              src={image}
               alt="property"
               className="get_loan_box_container__left__image_container__image"
             ></img>
@@ -42,38 +50,42 @@ const GetLoanBox = ({ loanId, handleClose }) => {
           <div className="get_loan_box_container__right__info">
             <div className="get_loan_box_container__right__info__table">
               <div className="get_loan_box_container__right__info__table__rows">
-                {props[0].data.rows.map((row, index) => {
-                  return (
-                    <div
-                      className="get_loan_box_container__right__info__table__rows__entry"
-                      key={index}
-                    >
-                      {row}
+                    <div className="get_loan_box_container__right__info__table__rows__entry">
+                      {entries[0][0]}
                     </div>
-                  );
-                })}
+                    <div className="get_loan_box_container__right__info__table__rows__entry">
+                      {entries[6][0]}
+                    </div>
+                    <div className="get_loan_box_container__right__info__table__rows__entry">
+                      {entries[4][0]}
+                    </div>
+                    <div className="get_loan_box_container__right__info__table__rows__entry">
+                      {entries[7][0]}
+                    </div>
               </div>
               <div className="get_loan_box_container__right__info__table__cols">
-                {props[0].data.columns.map((col, index) => {
-                  return (
-                    <div
-                      className="get_loan_box_container__right__info__table__cols__entry"
-                      key={index}
-                    >
-                      {col}
+                    <div className="get_loan_box_container__right__info__table__cols__entry">
+                    {entries[0][1]}
                     </div>
-                  );
-                })}
+                    <div className="get_loan_box_container__right__info__table__cols__entry">
+                    {entries[6][1]}
+                    </div>
+                    <div className="get_loan_box_container__right__info__table__cols__entry">
+                    {entries[4][1]}
+                    </div>
+                    <div className="get_loan_box_container__right__info__table__cols__entry">
+                    {entries[7][1]}
+                    </div>
               </div>
             </div>
           </div>
           <div className="get_loan_box_container__right__payment">
-            <input className="get_loan_box_container__right__payment__input" placeholder="Enter an amount" type = "text" value={input.amount} onChange={handleInput}/>
-            <input className="get_loan_box_container__right__payment__input" placeholder="Enter interest" type = "text" value={input.interest} onChange={handleInput}/>
-            <input className="get_loan_box_container__right__payment__input" placeholder="Enter duration" type = "text" value={input.duration} onChange={handleInput}/>
+            <input className="get_loan_box_container__right__payment__input" placeholder="Loan Amount (MATIC)" type = "text" value={input.amount} name='amount' onChange={handleInput}/>
+            <input className="get_loan_box_container__right__payment__input" placeholder="APR (%)" type = "text" value={input.interest} name='interest' onChange={handleInput}/>
+            <input className="get_loan_box_container__right__payment__input" placeholder="Loan Duration (wks/months/yrs)" type = "text" value={input.duration} name='duration' onChange={handleInput}/>
             <div className="get_loan_box_container__right__payment__button_container">
-              <button className="get_loan_box_container__right__payment__button" onClick={handlePost}>Post</button>
-              <button className="get_loan_box_container__right__payment__button" onClick={handleClose}>Close</button>
+              <button className="get_loan_box_container__right__payment__button" onClick={handlePost}>Request</button>
+              <button className="get_loan_box_container__right__payment__button" onClick={handleClose}>Cancel</button>
             </div>
           </div>
         </div>
