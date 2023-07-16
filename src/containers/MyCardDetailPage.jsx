@@ -4,7 +4,7 @@ import DetailCardDetails from "../components/DetailCardDetails";
 import Navbar from "../components/Navbar";
 import { useLocation } from "react-router-dom";
 import { PdealAddress, PdealAbi, PnftAbi, PnftAddress } from '../constants'
-import { readContract, writeContract } from "wagmi/actions";
+import { readContract, waitForTransaction, writeContract } from "wagmi/actions";
 import { parseEther} from 'viem'
 import { Polybase } from "@polybase/client";
 
@@ -35,13 +35,16 @@ const MyCardDetailPage = () => {
        price = parseEther(price)
        const tokenId = recordId.slice(42)
        
-       const response = await writeContract({
+       const {hash} = await writeContract({
           address: PnftAddress,
           abi: PnftAbi,
           functionName: "approve",
           args: [PdealAddress, tokenId]
         })
-       const { hash } = await writeContract({
+        const txreceipt = await waitForTransaction({
+          hash: hash
+        })
+       const response = await writeContract({
           address: PdealAddress,
           abi: PdealAbi,
           functionName: "list",

@@ -102,7 +102,7 @@ const ProfileLoanActions = () => {
  }, []);
 
   const header = [
-    "Property",
+    "Collateral",
     "Value",
     "Loan Amount",
     "APR",

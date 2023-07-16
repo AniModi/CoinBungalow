@@ -67,7 +67,7 @@ const DetailCardDetails = ({recordId, buttons, collateral, handleClose}) => {
       const amount = _loanData[0];
       const duration = _loanData[1];
       let entries=[], entry=[]
-      entry = ['Borrower', loanDetails[1].slice(0,5)+'...'+loanDetails[1].slice(37,42)]
+      entry = ['Borrower', loanDetails[1].slice(0,6)+'...'+loanDetails[1].slice(37,42)]
       entries.push(entry)
       entry = ['Loan Amount', amount+' MATIC']
       entries.push(entry)
