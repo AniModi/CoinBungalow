@@ -16,7 +16,7 @@ import {
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { publicProvider } from 'wagmi/providers/public';
 import {
-  polygonMumbai, hardhat
+  polygonMumbai, hardhat, sepolia
 } from 'wagmi/chains';
 import ProfileDashBoard from './containers/ProfileDashBaord';
 import ProfileOffers from './components/ProfileOffers';
@@ -27,7 +27,7 @@ import MyCardDetailPage from './containers/MyCardDetailPage';
 import BuyCardDetailPage from './containers/BuyCardDetailPage';
 import LoanCardDetailPage from './containers/LoanCardDetailPage';
 const { chains, publicClient } = configureChains(
-  [polygonMumbai, hardhat],
+  [polygonMumbai, sepolia, hardhat],
   [
     publicProvider()
   ]

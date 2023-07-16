@@ -14,6 +14,10 @@ async function main() {
     const Sbt = await ethers.getContractFactory("SBT")
     const sbt = await Sbt.deploy();
     console.log("SBT address:", sbt.target);
+
+    const Loan = await ethers.getContractFactory("Loan")
+    const loan = await Loan.deploy(propertyNFT.target);
+    console.log("Loan address:", loan.target);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
