@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "../assets/styles/components/GetLoanBox.scss";
+import { parseEther } from 'viem'
+import { writeContract } from 'wagmi/actions'
+import { LoanAddress, LoanAbi, PnftAddress, PnftAbi} from '../constants'
 
 const GetLoanBox = ({ loanId, entries, image, handleClose }) => {
   const tokenId = loanId.slice(42);
@@ -29,7 +32,41 @@ const GetLoanBox = ({ loanId, entries, image, handleClose }) => {
   ];
   const handlePost = async () => {
     try{
-      
+      let amount = parseFloat(input.amount);
+      const interest = parseFloat(input.interest);
+      const _data = input.amount+', '+input.duration
+      let duration = input.duration.split(' ');
+      if(duration[1] === 'wks'){
+        duration = duration[0]/4;
+        duration = duration/12;
+      }
+      else if(duration[1] === 'days'){
+        duration = duration[0]/30;
+        duration = duration/12;
+      }
+      else if(duration[1] === 'months'){
+        duration = duration[0]/12;
+      }
+      else {
+        return;
+      }
+      const durationInSec = parseInt(duration * 365 * 24 * 60 * 60);
+      duration = duration.toFixed(4);
+      amount += (amount * interest * duration)/100;
+      amount = parseEther(amount.toString())
+      const response = await writeContract({
+        address: PnftAddress,
+        abi: PnftAbi,
+        functionName: 'approve',
+        args: [LoanAddress, tokenId],
+      })
+      const {hash} = await writeContract({
+        address: LoanAddress,
+        abi: LoanAbi,
+        functionName: 'getLoan',
+        args: [tokenId, amount, interest*100, durationInSec, _data],
+      })
+
       setInput(defaultInputState);
     }
     catch(err){ console.log(err)}

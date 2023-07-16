@@ -1,8 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "../assets/styles/components/DetailCardDetails.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import GetLoanBox from "./GetLoanBox";
+import { LoanAbi, LoanAddress } from '../constants'
+import { readContract } from "wagmi/actions";
 import { Polybase } from "@polybase/client";
 
 const db = new Polybase({
@@ -12,6 +15,7 @@ const db = new Polybase({
 const db_metadata = db.collection("PropertyNFTMetadata");
 
 const DetailCardDetails = ({recordId, buttons, collateral, handleClose}) => {
+  const { pathname } = useLocation();
   const [image, setImage] = useState('')
   const [entries, setEntries] = useState([
     ["Bedrooms", "3"],
@@ -23,6 +27,7 @@ const DetailCardDetails = ({recordId, buttons, collateral, handleClose}) => {
     ],
     ["Price", "1000"],
   ]);
+  const [loanEntries, setLoanEntries] = useState([])
 
   useEffect(() => {
     async function loadMetadata(){
@@ -48,8 +53,34 @@ const DetailCardDetails = ({recordId, buttons, collateral, handleClose}) => {
       entry=['Google maps', <a href={data.maps} style={{color: 'lightskyblue'}}>View</a>]
       entries.push(entry)
       setEntries(entries)
-
     }
+
+    async function loadLendMetadata(){
+      const tokenId = recordId.slice(42)
+      const loanDetails= await readContract({
+        address: LoanAddress,
+        abi: LoanAbi,
+        functionName: 'loanRequest',
+        args: [tokenId]
+      })
+      const _loanData = loanDetails[5].split(', ')
+      const amount = _loanData[0];
+      const duration = _loanData[1];
+      let entries=[], entry=[]
+      entry = ['Borrower', loanDetails[1].slice(0,5)+'...'+loanDetails[1].slice(37,42)]
+      entries.push(entry)
+      entry = ['Loan Amount', amount+' MATIC']
+      entries.push(entry)
+      entry = ['Interest', loanDetails[2]+'%']
+      entries.push(entry)
+      entry = ['Duration', duration]
+      entries.push(entry)
+      setLoanEntries(entries)
+    }
+
+    if(pathname.includes('lend'))
+    loadLendMetadata()
+    // else
     loadMetadata()
   }, []);
 
@@ -67,7 +98,7 @@ const DetailCardDetails = ({recordId, buttons, collateral, handleClose}) => {
         </div>
         <div className="detail_card_details_container__right">
           <div className="detail_card_details_container__right__info">
-            <div className="detail_card_details_container__right__info__table">
+            <div className="detail_card_details_container__right__info__table"><h3>Property details</h3>
               <div className="detail_card_details_container__right__info__table__rows">
                 {entries.map((entry, index) => {
                   return (
@@ -88,6 +119,28 @@ const DetailCardDetails = ({recordId, buttons, collateral, handleClose}) => {
                   );
                 })}
               </div>
+                { loanEntries.length>0 &&
+              <>
+              <h3>Loan details</h3>
+              <div className="detail_card_details_container__right__info__table__rows">
+                {loanEntries.map((entry, index) => {
+                  return (
+                    <>
+                      <div
+                        className="detail_card_details_container__right__info__table__rows__entry_name"
+                        key={index}
+                      >
+                        {entry[0]}
+                      </div>
+                      <div
+                        className="detail_card_details_container__right__info__table__rows__entry_value"
+                        key={index}
+                      >
+                        {entry[1]}
+                        </div>
+                    </>)} )}
+                    </div>
+                    </>}
             </div>
           </div>
           <div className="detail_card_details_container__right__button_container">

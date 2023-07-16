@@ -20,6 +20,7 @@ contract Loan is AutomationCompatibleInterface{
     uint256 apr;
     uint256 duration;
     uint256 value;
+    string data;
   }
 
   struct LoanFulfilled{
@@ -52,11 +53,11 @@ contract Loan is AutomationCompatibleInterface{
           return loanRequests;
      }
 
-    function getLoan(uint256 tokenId, uint256 value, uint256 apr, uint256 duration) public {
+    function getLoan(uint256 tokenId, uint256 value, uint256 apr, uint256 duration, string memory data) public {
         require(IERC721(nftAddress).ownerOf(tokenId) == msg.sender, "Not the owner of this NFT");
         loanRequestExists[tokenId] = true;
         IERC721(nftAddress).transferFrom(msg.sender, address(this), tokenId);
-        LoanRequest memory _loanRequest = LoanRequest(tokenId, msg.sender, apr, duration, value);
+        LoanRequest memory _loanRequest = LoanRequest(tokenId, msg.sender, apr, duration, value, data);
         loanRequests.push(_loanRequest);
         loanRequest[tokenId]=_loanRequest;
     }

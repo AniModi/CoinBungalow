@@ -4,20 +4,20 @@ import CardTable from "./CardTable";
 import { motion } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 const SLideshowCard = ({ props, key }) => {
-  const { image, data } = props;
+  const { id, image, data } = props;
   const {pathname} = useLocation();
   const navigate = useNavigate();
 
   const handleDetail = () => {
     console.log(pathname);
     if(pathname === "/buy-house" || pathname === "/buy-land") {
-      navigate("/buy/:id");
+      navigate(`/buy/${id}`);
     }
     else if(pathname === "/sell-house" || pathname === "/sell-land" || pathname === "/my-nfts") {
-      navigate("/my-nfts/:id");
+      navigate(`/my-nfts/${id}`);
     }
     else if(pathname === "/lend") {
-      navigate("/lend/:id");
+      navigate(`/lend/${id}`);
     }
   };
   return (
@@ -51,10 +51,10 @@ const SLideshowCard = ({ props, key }) => {
           </div>{" "}
           <div className="slideshow_card_container__right__price">
             <div className="slideshow_card_container__right__price__title">
-              Price
+              Value
             </div>
             <div className="slideshow_card_container__right__price__price">
-              ₹ 1.5 Cr
+              {props.value} MATIC
             </div>
           </div>{" "}
         </div>

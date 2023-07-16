@@ -50,6 +50,7 @@ const ProfilePropertyActions = () => {
   };
 
   const loadMetadata = async (tokenIds) => {
+    console.log(tokenIds)
      let details = []
      for(let i=0; i<tokenIds.length; i++){
       const _tokenId = tokenIds[i].toString()
@@ -68,7 +69,7 @@ const ProfilePropertyActions = () => {
           functionName: "getListedProperties",
        })
 
-       const userProps = await Promise.all(listedProperties.map(async (property) => {
+       let userProps = await Promise.all(listedProperties.map(async (property) => {
         const _tokenId = property.tokenId
         const isListed = await readContract({
           address: PdealAddress,
@@ -79,7 +80,8 @@ const ProfilePropertyActions = () => {
         if (isListed && property.seller === account.address)
         return property
       }))
-        
+      userProps = userProps.filter((property) => property !== undefined)
+
         if(userProps[0] === undefined) return;
         const tokenIds = userProps.map((property) => property.tokenId)
         await loadMetadata(tokenIds)

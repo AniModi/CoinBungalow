@@ -2,7 +2,7 @@
 export const PnftAddress = '0x619a7618e045db47044cbC00dc6D3ffA31FC473F'
 export const PdealAddress = '0x0df7f720a16045C34D5226fFd0719e464127a71c'
 export const SbtAddress = '0x1aC6559A9222f389a58d2481eC7efC58D5eF3237'
-export const LoanAddress = '0x7f61aFA54fC09f48C6A42B109200b80A1A1d2feE'
+export const LoanAddress = '0x97c0bB8d57540FC75ECa33C92C6e023A2a09cc65'
 // abis
 export const PnftAbi = [
   {
@@ -1261,6 +1261,11 @@ export const LoanAbi = [
         "internalType": "uint256",
         "name": "duration",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "data",
+        "type": "string"
       }
     ],
     "name": "getLoan",
@@ -1298,6 +1303,11 @@ export const LoanAbi = [
             "internalType": "uint256",
             "name": "value",
             "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "data",
+            "type": "string"
           }
         ],
         "internalType": "struct Loan.LoanRequest[]",
@@ -1428,6 +1438,11 @@ export const LoanAbi = [
         "internalType": "uint256",
         "name": "value",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "data",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -1486,6 +1501,11 @@ export const LoanAbi = [
         "internalType": "uint256",
         "name": "value",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "data",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
