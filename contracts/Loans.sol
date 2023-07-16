@@ -8,7 +8,7 @@ interface IERC721{
    function ownerOf(uint256 tokenId) external view returns (address owner);
 }
 
-abstract contract Loan is AutomationCompatibleInterface{
+contract Loan is AutomationCompatibleInterface{
   address public nftAddress;
   constructor(address _nftAddress){
     nftAddress = _nftAddress;
@@ -37,6 +37,7 @@ abstract contract Loan is AutomationCompatibleInterface{
     uint256 amount;
     uint256 paid;
     uint256 deadline;
+    bool closed;
   }
 
    LoanRequest[] public loanRequests;
@@ -79,28 +80,41 @@ abstract contract Loan is AutomationCompatibleInterface{
         _loanRequest.duration, _loanRequest.value, block.timestamp, block.timestamp + _loanRequest.duration);
         fulfilledLoans.push(loanFulfilled[tokenId]);
         lender[tokenId]=msg.sender;
-        repayTracker[tokenId]=RepayTracker(_loanRequest.value, 0, block.timestamp + _loanRequest.duration);
+        repayTracker[tokenId]=RepayTracker(_loanRequest.value, 0, block.timestamp + _loanRequest.duration, false);
     }
 
     function repay(uint256 tokenId) payable public{
         RepayTracker memory _repayTracker = repayTracker[tokenId];
         require(block.timestamp <= _repayTracker.deadline, "Loan deadline passed !");
-        require(msg.value <= _repayTracker.amount - _repayTracker.paid, "Amount exceeds loan amount !");
+        require(!_repayTracker.closed, "Loan already closed !");
+        require(msg.value == _repayTracker.amount, "Loan amount not enough");
         (bool success, ) = payable(lender[tokenId]).call{value: msg.value}("");
         require(success, "Transfer failed!");
         repayTracker[tokenId].paid += msg.value;
+        repayTracker[tokenId].closed = true;
     }
 
     function _defaultLoan(uint256 tokenId) internal{
-
+      IERC721(nftAddress).transferFrom(address(this), loanFulfilled[tokenId].lender, tokenId);
+      repayTracker[tokenId].closed = true;
     }
 
     function checkUpkeep(bytes calldata /* checkData */) external view override returns (bool upkeepNeeded, bytes memory performData) {
-        
-        return (true, "0x");
+        LoanFulfilled[] memory _fulfilledLoans = fulfilledLoans;
+        for(uint256 i=0; i<_fulfilledLoans.length; i++){
+            if(repayTracker[_fulfilledLoans[i].tokenId].closed) continue;
+            upkeepNeeded = (block.timestamp > _fulfilledLoans[i].deadline);
+            if(upkeepNeeded){
+                performData = abi.encode(_fulfilledLoans[i].tokenId);
+                break;
+            }
+        }
+
+        return (upkeepNeeded, performData);
     }
     
-    function performUpkeep(bytes calldata /* performData */) external override  {
-        _defaultLoan(1);
+    function performUpkeep(bytes calldata performData ) external override  {
+      uint256 tokenId = abi.decode(performData, (uint256));
+        _defaultLoan(tokenId);
     }
 }
