@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { useLocation } from "react-router-dom";
 import { PdealAddress, PdealAbi, PnftAbi, PnftAddress } from '../constants'
 import { readContract, writeContract } from "wagmi/actions";
+import { parseEther} from 'viem'
 import { Polybase } from "@polybase/client";
 
 const db = new Polybase({
@@ -30,7 +31,8 @@ const MyCardDetailPage = () => {
     }
     const handleSell = async () => {
       try{
-       const price = await fetchPrice();
+       let price = await fetchPrice();
+       price = parseEther(price)
        const tokenId = recordId.slice(42)
        
        const response = await writeContract({
