@@ -93,8 +93,8 @@ const ProfileLoanActions = () => {
    }))
    userLoans = userLoans.filter((loan) => loan !== undefined)
 
-     if(userLoans[0] === undefined) return;
-     const tokenIds = userLoans.map((loan) => loan.tokenId)
+   if(userLoans[0] === undefined) return;
+   const tokenIds = userLoans.map((loan) => loan.tokenId)
      await loadMetadata(tokenIds)
     }
      loadUserLoans();

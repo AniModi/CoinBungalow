@@ -68,7 +68,6 @@ const ProfilePropertyActions = () => {
           abi: PdealAbi,
           functionName: "getListedProperties",
        })
-
        let userProps = await Promise.all(listedProperties.map(async (property) => {
         const _tokenId = property.tokenId
         const isListed = await readContract({
@@ -81,7 +80,6 @@ const ProfilePropertyActions = () => {
         return property
       }))
       userProps = userProps.filter((property) => property !== undefined)
-
         if(userProps[0] === undefined) return;
         const tokenIds = userProps.map((property) => property.tokenId)
         await loadMetadata(tokenIds)

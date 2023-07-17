@@ -2,7 +2,7 @@
 export const PnftAddress = '0x619a7618e045db47044cbC00dc6D3ffA31FC473F'
 export const PdealAddress = '0x0df7f720a16045C34D5226fFd0719e464127a71c'
 export const SbtAddress = '0x1aC6559A9222f389a58d2481eC7efC58D5eF3237'
-export const LoanAddress = '0x97c0bB8d57540FC75ECa33C92C6e023A2a09cc65'
+export const LoanAddress = '0x3e9436a9E8BB54916D6B57A595e52a010361f71C'
 // abis
 export const PnftAbi = [
   {
@@ -1235,6 +1235,61 @@ export const LoanAbi = [
         "internalType": "uint256",
         "name": "deadline",
         "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getFulfilledLoans",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "lender",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "borrower",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "apr",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "deadline",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct Loan.LoanFulfilled[]",
+        "name": "",
+        "type": "tuple[]"
       }
     ],
     "stateMutability": "view",

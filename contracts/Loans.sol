@@ -53,6 +53,10 @@ contract Loan is AutomationCompatibleInterface{
           return loanRequests;
      }
 
+     function getFulfilledLoans() public view returns (LoanFulfilled[] memory) {
+          return fulfilledLoans;
+     }
+
     function getLoan(uint256 tokenId, uint256 value, uint256 apr, uint256 duration, string memory data) public {
         require(IERC721(nftAddress).ownerOf(tokenId) == msg.sender, "Not the owner of this NFT");
         loanRequestExists[tokenId] = true;
@@ -72,7 +76,6 @@ contract Loan is AutomationCompatibleInterface{
     function lend(uint256 tokenId) payable public{
         require(loanRequestExists[tokenId], "Does not exist !");
         LoanRequest memory _loanRequest = loanRequest[tokenId];
-        require(msg.value >= _loanRequest.value, "Loan amount not enough");
         (bool success, ) = payable(_loanRequest.borrower).call{value: msg.value}("");
         require(success, "Transfer failed!");
         loanRequestExists[tokenId] = false;
@@ -93,6 +96,7 @@ contract Loan is AutomationCompatibleInterface{
         require(success, "Transfer failed!");
         repayTracker[tokenId].paid += msg.value;
         repayTracker[tokenId].closed = true;
+        IERC721(nftAddress).transferFrom(address(this), loanFulfilled[tokenId].borrower, tokenId);
     }
 
     function _defaultLoan(uint256 tokenId) internal{

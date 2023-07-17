@@ -67,7 +67,7 @@ const HouseListPage = () => {
         abi: PdealAbi,
         functionName: "getListedProperties",
      })
-     const listedProperties = await Promise.all(ListedProperties.map(async (property) => {
+     let listedProperties = await Promise.all(ListedProperties.map(async (property) => {
       const _tokenId = property.tokenId
       const isListed = await readContract({
         address: PdealAddress,
@@ -78,7 +78,7 @@ const HouseListPage = () => {
       if (isListed)
       return property
     }))
-    if(listedProperties[0] === undefined) return;
+    listedProperties = listedProperties.filter((property) => property !== undefined)
       const tokenIds = listedProperties.map((property) => property.tokenId)
       if(tokenIds.length === 0) return;
       await loadMetadata(tokenIds)

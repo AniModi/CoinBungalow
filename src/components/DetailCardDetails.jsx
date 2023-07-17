@@ -71,7 +71,7 @@ const DetailCardDetails = ({recordId, buttons, collateral, handleClose}) => {
       entries.push(entry)
       entry = ['Loan Amount', amount+' MATIC']
       entries.push(entry)
-      entry = ['Interest', loanDetails[2]+'%']
+      entry = ['Interest', loanDetails[2].toString()/100+'%']
       entries.push(entry)
       entry = ['Duration', duration]
       entries.push(entry)
