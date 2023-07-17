@@ -1,0 +1,14 @@
+.offer_list_container {
+    margin-top: 60px;
+    margin-left: 250px;
+    width: calc(100vw - 250px);
+    height: calc(100vh - 60px);
+    background-color: #282c35;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__list {
+        height: 80%;
+        width: 80%;
+    }
+}

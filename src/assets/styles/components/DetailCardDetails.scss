@@ -44,17 +44,26 @@
           height: 100%;
           display: grid;
           grid-template-columns: 0.5fr 1fr;
+          grid-template-rows: 1fr;
+          gap: 1rem;
+          overflow-y: scroll;
           &__entry_name {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: flex-start;
             color: #707070;
+            overflow-y: auto;
+            max-height: 100px;
+            width: 100%;
           }
           &__entry_value {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: flex-start;
             color: white;
+            overflow-y: auto;
+            max-height: 100px;
+            width: 100%;
           }
         }
       }
