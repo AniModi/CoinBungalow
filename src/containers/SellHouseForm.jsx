@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../assets/styles/containers/SellHouseForm.scss";
 import Navbar from '../components/Navbar';
 import InputBox from '../components/InputBox';
-import { PnftAddress, PnftAbi, PdealAddress, PdealAbi } from '../constants';
+import { PnftAddress, PnftAbi } from '../constants';
 import { writeContract, readContract } from 'wagmi/actions';
 import lighthouse from '@lighthouse-web3/sdk';
 import { Polybase } from "@polybase/client";

@@ -75,7 +75,8 @@ const HouseListPage = () => {
       listedProperties = listedProperties.filter(
         (property) => property !== undefined
       );
-      const tokenIds = listedProperties.map((property) => property.tokenId);
+      let tokenIds = listedProperties.map((property) => property.tokenId);
+      tokenIds = [...new Set(tokenIds)]
       await loadMetadata(tokenIds);
       setIsLoading(false);
     }

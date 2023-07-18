@@ -107,7 +107,8 @@ contract Loan is AutomationCompatibleInterface{
     function checkUpkeep(bytes calldata /* checkData */) external view override returns (bool upkeepNeeded, bytes memory performData) {
         LoanFulfilled[] memory _fulfilledLoans = fulfilledLoans;
         for(uint256 i=0; i<_fulfilledLoans.length; i++){
-            if(repayTracker[_fulfilledLoans[i].tokenId].closed) continue;
+            if(repayTracker[_fulfilledLoans[i].tokenId].closed || loanFulfilled[_fulfilledLoans[i].tokenId].timestamp != _fulfilledLoans[i].timestamp)
+             continue;
             upkeepNeeded = (block.timestamp > _fulfilledLoans[i].deadline);
             if(upkeepNeeded){
                 performData = abi.encode(_fulfilledLoans[i].tokenId);

@@ -67,15 +67,18 @@ const ProfilePendingLoans = () => {
       const { data } = await db_metadata.record(recordId).get();
       const interest = userLoans[i].apr.toString() / 100;
       const amount = formatEther(userLoans[i].value);
-      const timeLeft =
+      let timeLeft =
         (userLoans[i].deadline.toString() - Math.floor(Date.now() / 1000)) /
         (60 * 60 * 24);
+        if(timeLeft<0) timeLeft = "Expired!";
+        else if(parseInt(timeLeft)===0 && (timeLeft*24*60)!==0) timeLeft = (timeLeft*24*60).toFixed(2) + " mins";
+        else timeLeft = parseInt(timeLeft) + " days";
       details.push([
         data.type,
         data.value + " MATIC",
         amount + " MATIC",
         interest + "%",
-        parseInt(timeLeft) + " days",
+        timeLeft,
         <Button loanId={_tokenId} loanAmount={userLoans[i].value} />,
       ]);
     }
@@ -104,7 +107,20 @@ const ProfilePendingLoans = () => {
         })
       );
       userLoans = userLoans.filter((loan) => loan !== undefined);
-      //  const tokenIds = userLoans.map((loan) => loan.tokenId)
+      const tokenMap = {};
+      for(const obj of userLoans){
+        const tokenId = obj.tokenId.toString();
+        const timestamp = obj.timestamp.toString();
+        if(tokenId in tokenMap){
+          if(timestamp>tokenMap[tokenId].timestamp){
+            tokenMap[tokenId] = obj;
+          }
+        }
+        else{
+          tokenMap[tokenId] = obj;
+        }
+      }
+      userLoans = Object.values(tokenMap);
       await loadMetadata(userLoans);
       setIsLoading(false);
     }

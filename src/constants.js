@@ -2,7 +2,7 @@
 export const PnftAddress = '0x619a7618e045db47044cbC00dc6D3ffA31FC473F'
 export const PdealAddress = '0x0df7f720a16045C34D5226fFd0719e464127a71c'
 export const SbtAddress = '0x1aC6559A9222f389a58d2481eC7efC58D5eF3237'
-export const LoanAddress = '0x3e9436a9E8BB54916D6B57A595e52a010361f71C'
+export const LoanAddress = '0xC61712e9FCa788D7FAB288e76eFA05fa974bf3A0'
 // abis
 export const PnftAbi = [
   {

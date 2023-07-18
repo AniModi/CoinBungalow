@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../assets/styles/containers/MyCardDetailPage.scss";
 import DetailCardDetails from "../components/DetailCardDetails";
 import Navbar from "../components/Navbar";
+import Loader from "../components/Loader"
 import { useLocation } from "react-router-dom";
 import { PdealAddress, PdealAbi, PnftAbi, PnftAddress } from '../constants'
 import { readContract, waitForTransaction, writeContract } from "wagmi/actions";
@@ -17,7 +18,7 @@ const db_metadata = db.collection("PropertyNFTMetadata");
 const MyCardDetailPage = () => {
   const { pathname } = useLocation();
   const recordId = pathname.split("/")[2];
-
+    const [isLoading, setIsLoading] = useState(false);
     const [collateral, setCollateral] = useState(false);
     const handleClose = () => {
         setCollateral(false);
@@ -35,6 +36,7 @@ const MyCardDetailPage = () => {
        price = parseEther(price)
        const tokenId = recordId.slice(42)
        
+       setIsLoading(true)
        const {hash} = await writeContract({
           address: PnftAddress,
           abi: PnftAbi,
@@ -44,6 +46,7 @@ const MyCardDetailPage = () => {
         const txreceipt = await waitForTransaction({
           hash: hash
         })
+        setIsLoading(false)
        const response = await writeContract({
           address: PdealAddress,
           abi: PdealAbi,
@@ -69,6 +72,7 @@ const MyCardDetailPage = () => {
     <>
       <Navbar></Navbar>
       <div className="my_card_detail_page_container">
+      {isLoading && <Loader></Loader>}
         <DetailCardDetails buttons={<Buttons></Buttons>} recordId = {recordId} collateral = {collateral} handleClose = {handleClose}></DetailCardDetails>
       </div>
     </>

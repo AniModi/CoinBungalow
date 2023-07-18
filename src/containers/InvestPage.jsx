@@ -46,6 +46,7 @@ const InvestPage = () => {
       const loan_data = loanRequest[5].split(", ");
       const amount = loan_data[0];
       const duration = loan_data[1];
+      const creditScore = loan_data[2];
       props.push({
         id: recordId,
         image: data.image,
@@ -60,7 +61,7 @@ const InvestPage = () => {
             amount + " MATIC",
             interest + "%",
             duration,
-            "h",
+            creditScore,
           ],
         },
       });
@@ -69,7 +70,7 @@ const InvestPage = () => {
     for (let i = 0; i < props.length && i < 3; i++) slideshow.push(props[i]);
     setSlideshow(slideshow);
     if (props.length < 4) return;
-    setProps(props);
+    setProps(props.slice(3));
   };
 
   useEffect(() => {
@@ -92,8 +93,8 @@ const InvestPage = () => {
         })
       );
       listedLoans = listedLoans.filter((loan) => loan !== undefined);
-      const tokenIds = listedLoans.map((loan) => loan.tokenId);
-      if (tokenIds.length === 0) return;
+      let tokenIds = listedLoans.map((loan) => loan.tokenId);
+      tokenIds = [...new Set(tokenIds)]
       await loadMetadata(tokenIds);
       setIsLoading(false);
     }
@@ -103,7 +104,7 @@ const InvestPage = () => {
       console.log(err);
     }
   }, []);
-  console.log(isLoading);
+  
   return (
     <>
       <Navbar></Navbar>

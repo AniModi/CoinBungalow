@@ -49,7 +49,10 @@ const MyNFTPage = () => {
         functionName: "balanceOf",
         args: [account.address],
       });
-      if (nfts.toString() === "0") return;
+      if (nfts.toString() === "0"){
+        setIsLoading(false);
+        return;
+      } 
       nfts = parseInt(nfts.toString());
       let tokenIds = [];
       for (let i = 0; i < nfts; i++) {
@@ -66,7 +69,6 @@ const MyNFTPage = () => {
       setIsLoading(false);
     }
     loadNfts();
-    // loadMetadata([0])
   }, []);
 
   return (

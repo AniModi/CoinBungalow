@@ -83,7 +83,8 @@ const ProfilePropertyActions = () => {
         })
       );
       userProps = userProps.filter((property) => property !== undefined);
-      const tokenIds = userProps.map((property) => property.tokenId);
+      let tokenIds = userProps.map((property) => property.tokenId);
+      tokenIds = [...new Set(tokenIds)]
       await loadMetadata(tokenIds);
       setIsLoading(false);
     }

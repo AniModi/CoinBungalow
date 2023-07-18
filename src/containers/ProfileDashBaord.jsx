@@ -48,6 +48,7 @@ const ProfileDashBoard = () => {
         if (data === null) return;
         setImage(data.image);
         setCreditScore(data.creditScore);
+        localStorage.setItem("creditScore", data.creditScore)
         setIsLoading(false);
         return;
       }

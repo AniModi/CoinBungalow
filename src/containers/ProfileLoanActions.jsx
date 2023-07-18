@@ -94,8 +94,9 @@ const ProfileLoanActions = () => {
         })
       );
       userLoans = userLoans.filter((loan) => loan !== undefined);
-
-      const tokenIds = userLoans.map((loan) => loan.tokenId);
+      let tokenIds = userLoans.map((loan) => loan.tokenId);
+      tokenIds = [...new Set(tokenIds)];
+      console.log(tokenIds);
       await loadMetadata(tokenIds);
       setIsLoading(false);
     }

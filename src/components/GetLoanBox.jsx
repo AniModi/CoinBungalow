@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../assets/styles/components/GetLoanBox.scss";
+import Loader from "./Loader"
 import { parseEther } from 'viem'
-import { writeContract } from 'wagmi/actions'
+import { writeContract, waitForTransaction } from 'wagmi/actions'
 import { LoanAddress, LoanAbi, PnftAddress, PnftAbi} from '../constants'
 
 const GetLoanBox = ({ loanId, entries, image, handleClose }) => {
@@ -12,6 +13,7 @@ const GetLoanBox = ({ loanId, entries, image, handleClose }) => {
     duration: "",
   }
   const [input, setInput] = useState(defaultInputState);
+  const [isLoading, setIsLoading] = useState(false);
   const handleInput = (e) => {
     setInput({
       ...input,
@@ -34,7 +36,8 @@ const GetLoanBox = ({ loanId, entries, image, handleClose }) => {
     try{
       let amount = parseFloat(input.amount);
       const interest = parseFloat(input.interest);
-      const _data = input.amount+', '+input.duration
+      const creditScore = localStorage.getItem("creditScore");
+      const _data = input.amount+', '+input.duration+', '+creditScore;
       let duration = input.duration.split(' ');
       if(duration[1] === 'wks'){
         duration = duration[0]/4;
@@ -47,6 +50,9 @@ const GetLoanBox = ({ loanId, entries, image, handleClose }) => {
       else if(duration[1] === 'months'){
         duration = duration[0]/12;
       }
+      else if(duration[1] === 'mins'){
+        duration = duration[0]/(365*24*60)
+      }
       else {
         return;
       }
@@ -54,26 +60,33 @@ const GetLoanBox = ({ loanId, entries, image, handleClose }) => {
       duration = duration.toFixed(4);
       amount += (amount * interest * duration)/100;
       amount = parseEther(amount.toString())
+      setIsLoading(true);
       const response = await writeContract({
         address: PnftAddress,
         abi: PnftAbi,
         functionName: 'approve',
         args: [LoanAddress, tokenId],
       })
+      const txreceipt = await waitForTransaction({
+        hash: response.hash
+      })
+      setIsLoading(false);
       const {hash} = await writeContract({
         address: LoanAddress,
         abi: LoanAbi,
         functionName: 'getLoan',
         args: [tokenId, amount, interest*100, durationInSec, _data],
       })
-
+      
       setInput(defaultInputState);
     }
-    catch(err){ console.log(err)}
+    catch(err){ console.log(err);
+      setIsLoading(false);}
   };
   return (
     <>
       <div className="get_loan_box_container">
+        {isLoading && <Loader />}
         <div className="get_loan_box_container__left">
           <div className="get_loan_box_container__left__image_container">
             <img
