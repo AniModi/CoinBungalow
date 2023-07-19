@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "../assets/styles/components/ProposalCard.scss";
 import { motion, useAnimation, useInView } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const ProposalCard = ({ props }) => {
   const refCard = useRef(null);
@@ -26,6 +27,10 @@ const ProposalCard = ({ props }) => {
     }
   }, [isInView, cardAnimateControl, isInViewEnd]);
   const { title, date, description } = props;
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/dao/proposal/1");
+  };
   return (
     <>
       <motion.div
@@ -50,6 +55,7 @@ const ProposalCard = ({ props }) => {
               whileHover={{ scale: 1.1 }}
               ref={refCard}
               whileTap={{ scale: 0.9 }}
+              onClick={handleClick}
             >
               View
             </motion.button>
