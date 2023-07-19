@@ -16,7 +16,6 @@ const HouseCard = ({ props }) => {
   const navigate = useNavigate();
 
   const handleDetail = () => {
-    console.log(pathname);
     if(pathname === "/buy-house" || pathname === "/buy-land") {
       navigate(`/buy/${id}`);
     }

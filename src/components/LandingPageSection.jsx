@@ -1,11 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation, useInView } from "framer-motion";
 import "../assets/styles/components/LandingPageSection.scss";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const LandingPageSection = ({props}) => {
     const {title, body, img, url1, url2, text1, text2} = props;
+    const navigate = useNavigate();
+    const handleClick = (e) => {
+      if(e.target.textContent === text1) {
+        navigate(url1);
+      }
+      else navigate(url2);
+    }
     const [style, setStyle] = useState({
         backgroundImage: `url(${img})`,
         width: "100%",
@@ -51,8 +58,8 @@ const LandingPageSection = ({props}) => {
                     {body}
                 </div>
                 <div className="landing_page_section__left__body__btn_container">
-                    <Link className="landing_page_section__left__body__btn_container__btn" to={url1}>{text1}</Link>
-                    <Link className="landing_page_section__left__body__btn_container__btn" to={url2}>{text2}</Link>
+                    <motion.button className="landing_page_section__left__body__btn_container__btn" onClick={handleClick} whileHover={{scale:1.1}} whileTap={{scale:0.9}}>{text1}</motion.button>
+                    <motion.button className="landing_page_section__left__body__btn_container__btn" onClick={handleClick} whileHover={{scale:1.1}} whileTap={{scale:0.9}}>{text2}</motion.button>
                 </div>
             </div>
           </div>

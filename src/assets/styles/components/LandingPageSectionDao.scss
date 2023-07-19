@@ -1,0 +1,70 @@
+.landing_page_section_dao_container {
+  height: 100%;
+  width: 100vw;
+  &__banner {
+    height: 70vh;
+    width: 100vw;
+    background: url("https://img.freepik.com/free-vector/job-hire-hr-manager-invite-candidate-office_107791-8362.jpg?w=1380&t=st=1689753462~exp=1689754062~hmac=0e9f5012405d72a6efc069eac7e5625c6df3667495542f5582773a01c85dbe24");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  &__text {
+    margin-top: 1rem;
+    width: 100vw;
+    color: #ffffff;
+    padding: 1rem;
+    &__title {
+        font-size: 4rem;
+        font-weight: bolder;
+        position: relative;
+        &__fill {
+            background-color: #fff;
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+    }
+    &__subtitle {
+        font-size: 2.5rem;
+        color:#1FCB4f;
+        font-weight: bold;
+        position: relative;
+        &__fill {
+            background-color: #1FCB4f;
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+    }
+    &__body {
+        padding: 2rem 0;
+        margin-top: 2rem;
+        width: 100vw;
+        display: flex;
+        &__left {
+            width: 60%;
+            font-size: 2rem;
+        }
+        &__right {
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &__button {
+                width: 300px;
+                height: 75px;
+                background-color: #1FCB4f;
+                color: #000;
+                border: none;
+                border-radius: 1rem;
+                font-size: 2rem;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+    }
+  }
+}

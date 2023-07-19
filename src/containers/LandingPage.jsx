@@ -4,6 +4,7 @@ import "../assets/styles/containers/LandingPage.scss";
 import Navbar from "../components/Navbar";
 import LandingPageSection from "../components/LandingPageSection";
 import LandingPageSectionFlipped from "../components/LandingPageSectionFlipped";
+import LandingPageSectionDao from "../components/LandingPageSectionDao";
 
 const LandingPage = () => {
   const refBanner = useRef(true);
@@ -78,6 +79,7 @@ const LandingPage = () => {
         <LandingPageSection props = {data[0]}></LandingPageSection>
         <LandingPageSectionFlipped props = {data[1]}></LandingPageSectionFlipped>
         <LandingPageSection props = {data[2]}></LandingPageSection>
+        <LandingPageSectionDao></LandingPageSectionDao>
       </div>
     </>
   );

@@ -26,6 +26,7 @@ import ProfilePropertyActions from './containers/ProfilePropertyActions';
 import MyCardDetailPage from './containers/MyCardDetailPage';
 import BuyCardDetailPage from './containers/BuyCardDetailPage';
 import LoanCardDetailPage from './containers/LoanCardDetailPage';
+import DAOPage from './containers/DAOPage';
 const { chains, publicClient } = configureChains(
   [polygonMumbai, sepolia, hardhat],
   [
@@ -72,6 +73,7 @@ function App() {
       <Route exact path="/my-nfts/:id" element={<MyCardDetailPage />} />
       <Route exact path="/buy/:id" element={<BuyCardDetailPage />} />
       <Route exact path="/lend/:id" element={<LoanCardDetailPage />} />
+      <Route exact path="/dao" element={<DAOPage />} />
       </Routes>
       </RainbowKitProvider>
     </WagmiConfig >

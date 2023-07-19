@@ -54,10 +54,6 @@
                     cursor: pointer;
                     text-decoration: none;
                     background: #ffffff;
-                    transition: all 0.3s ease-in-out;
-                    &:hover {
-                        background: rgb(255, 255, 255, 0.8);
-                    }
                 }
             }
         }

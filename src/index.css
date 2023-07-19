@@ -15,7 +15,7 @@ html {
   overflow-x: hidden;
   position: relative;
   z-index: 10;
-  background-color: #1e1e1e;
+  background-color: #282C35;
   overflow-y: auto;
 
 }
@@ -25,6 +25,6 @@ body {
   overflow-x: hidden;
   position: relative;
   z-index: 10;
-  background-color: #1e1e1e;
+  background-color: #282C35;
   position: relative;
 }
