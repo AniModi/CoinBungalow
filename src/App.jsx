@@ -27,6 +27,7 @@ import MyCardDetailPage from './containers/MyCardDetailPage';
 import BuyCardDetailPage from './containers/BuyCardDetailPage';
 import LoanCardDetailPage from './containers/LoanCardDetailPage';
 import DAOPage from './containers/DAOPage';
+import ProposalDetailPage from './assets/styles/containers/ProposalDetailPage';
 const { chains, publicClient } = configureChains(
   [polygonMumbai, sepolia, hardhat],
   [
@@ -74,6 +75,7 @@ function App() {
       <Route exact path="/buy/:id" element={<BuyCardDetailPage />} />
       <Route exact path="/lend/:id" element={<LoanCardDetailPage />} />
       <Route exact path="/dao" element={<DAOPage />} />
+      <Route exact path="/dao/proposal/:id" element={<ProposalDetailPage />} />
       </Routes>
       </RainbowKitProvider>
     </WagmiConfig >

@@ -1,0 +1,89 @@
+.proposal_detail_page_container {
+  width: calc(100vw - 8rem);
+  height: 100%;
+  margin: 4rem;
+  margin-top: 10rem;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  border-radius: 1rem;
+  background-color: rgba(128, 128, 128,0.5);
+  &__title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    gap: 1rem;
+    &__title {
+        color: gray;
+        text-decoration: underline;
+    }
+  }
+  &__date {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    gap: 1rem;
+    &__title {
+        color: gray;
+        text-decoration: underline;
+    }
+  }
+
+  &__description {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    gap: 1rem;
+    &__title {
+        color: gray;
+        text-decoration: underline;
+    }
+  }
+  &__price, &__titleDeed, &__images {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    gap: 1rem;
+    &__title {
+        color: gray;
+        text-decoration: underline;
+    }
+  }
+  &__button_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+    gap: 2rem;
+    &__button {
+      width: 20%;
+      height: 50px;
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #1fcb4f;
+      color: #000;
+      cursor: pointer;
+    }
+  }
+}
