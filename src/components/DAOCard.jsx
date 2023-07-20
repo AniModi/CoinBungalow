@@ -3,7 +3,7 @@ import "../assets/styles/components/ProposalCard.scss";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const ProposalCard = ({ props }) => {
+const DAOCard = ({ props }) => {
   const refCard = useRef(null);
   const refCardEnd = useRef(null);
   const isInView = useInView(refCard);
@@ -29,7 +29,7 @@ const ProposalCard = ({ props }) => {
   const { title, date, description } = props;
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/dao/1/proposal/1");
+    navigate("/dao/1");
   };
   return (
     <>
@@ -57,7 +57,7 @@ const ProposalCard = ({ props }) => {
               whileTap={{ scale: 0.9 }}
               onClick={handleClick}
             >
-              View
+              Go to DAO {'>'}
             </motion.button>
           </div>
         </div>
@@ -66,4 +66,4 @@ const ProposalCard = ({ props }) => {
   );
 };
 
-export default ProposalCard;
+export default DAOCard;

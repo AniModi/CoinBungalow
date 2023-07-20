@@ -14,6 +14,7 @@
             height: 75px;
             width: 350px;
             background-color: #1A1C22;
+            text-align: center;
             border-radius: 4px;
             bottom: -15%;
             left: calc(50% - 150px);
@@ -74,6 +75,65 @@
         &__container {
             width: 80%;
             height: 100%;
+        }
+    }
+    &__text_box {
+        margin-top: 4rem;
+        width: 100vw;
+        color: #ffffff;
+        border-radius: 3rem;
+        padding: 2rem;
+        &__title {
+            margin-bottom: 0.5rem;
+            font-size: 4rem;
+            color:#1FCB4f;
+            font-weight: bolder;
+            position: relative;
+        }
+        &__subtitle{
+            font-size: 1.6rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+        }
+        &__body {
+            padding: 2rem 0;
+            width: 100vw;
+            display: flex;
+            &__left {
+                margin-bottom: 2rem;
+                width: 70%;
+                font-size: 1.7rem;
+                padding-left: 0.8rem;
+                &__subheading{
+                    font-size: 2.2rem;
+                    color: lightskyblue;
+                    font-weight: 600;
+                    margin-bottom: 1rem;
+                    padding-left: 0.5rem;
+                }
+            }
+            &__right {
+                width: 40%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                &__button {
+                    width: 300px;
+                    height: 75px;
+                    margin-top: 2rem;
+                    background-color: #1FCB4f;
+                    color: #000;
+                    border: none;
+                    border-radius: 1rem;
+                    font-size: 2rem;
+                    font-weight: bold;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: rgb(52, 252, 2);
+                    }
+                }
+            }
         }
     }
 }
