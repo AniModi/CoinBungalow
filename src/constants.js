@@ -1,8 +1,18 @@
-// addresses
-export const PnftAddress = '0x619a7618e045db47044cbC00dc6D3ffA31FC473F'
-export const PdealAddress = '0x0df7f720a16045C34D5226fFd0719e464127a71c'
-export const SbtAddress = '0x1aC6559A9222f389a58d2481eC7efC58D5eF3237'
-export const LoanAddress = '0xC61712e9FCa788D7FAB288e76eFA05fa974bf3A0'
+// sepolia addresses
+// export const PnftAddress = '0x619a7618e045db47044cbC00dc6D3ffA31FC473F'
+// export const PdealAddress = '0x0df7f720a16045C34D5226fFd0719e464127a71c'
+// export const SbtAddress = '0x1aC6559A9222f389a58d2481eC7efC58D5eF3237'
+// export const LoanAddress = '0xC61712e9FCa788D7FAB288e76eFA05fa974bf3A0'
+// export const DAOaddress = '0xa978631170779778A34c4c193552EE65aE881231'
+// export const DAOaddress = '0xa0DfD88Da95df3c4ffE77F077Ec5316467914596'
+
+// polygon addresses
+export const PnftAddress = '0x8A791620dd6260079BF849Dc5567aDC3F2FdC318'
+export const PdealAddress = '0x610178dA211FEF7D417bC0e6FeD39F05609AD788'
+export const SbtAddress = '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
+export const LoanAddress = '0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e'
+export const DAOaddress = '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9'
+
 // abis
 export const PnftAbi = [
   {
@@ -174,6 +184,25 @@ export const PnftAbi = [
       }
     ],
     "name": "mint",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "mintTo",
     "outputs": [
       {
         "internalType": "uint256",
@@ -1634,6 +1663,961 @@ export const LoanAbi = [
         "internalType": "bool",
         "name": "closed",
         "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
+
+// export const DAOabi = [
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "string",
+//         "name": "_uri",
+//         "type": "string"
+//       }
+//     ],
+//     "name": "createDAO",
+//     "outputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "",
+//         "type": "uint256"
+//       }
+//     ],
+//     "stateMutability": "nonpayable",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "_dao_id",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "string",
+//         "name": "_uri",
+//         "type": "string"
+//       }
+//     ],
+//     "name": "createProposal",
+//     "outputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "",
+//         "type": "uint256"
+//       }
+//     ],
+//     "stateMutability": "nonpayable",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "",
+//         "type": "uint256"
+//       }
+//     ],
+//     "name": "daos",
+//     "outputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "id",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "string",
+//         "name": "uri",
+//         "type": "string"
+//       },
+//       {
+//         "internalType": "address",
+//         "name": "organizer",
+//         "type": "address"
+//       },
+//       {
+//         "internalType": "bool",
+//         "name": "closed",
+//         "type": "bool"
+//       }
+//     ],
+//     "stateMutability": "view",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "_proposal_id",
+//         "type": "uint256"
+//       }
+//     ],
+//     "name": "donate",
+//     "outputs": [],
+//     "stateMutability": "payable",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [],
+//     "name": "getAllDaos",
+//     "outputs": [
+//       {
+//         "components": [
+//           {
+//             "internalType": "uint256",
+//             "name": "id",
+//             "type": "uint256"
+//           },
+//           {
+//             "internalType": "string",
+//             "name": "uri",
+//             "type": "string"
+//           },
+//           {
+//             "internalType": "address",
+//             "name": "organizer",
+//             "type": "address"
+//           },
+//           {
+//             "internalType": "bool",
+//             "name": "closed",
+//             "type": "bool"
+//           }
+//         ],
+//         "internalType": "struct DAO.dao_struct[]",
+//         "name": "",
+//         "type": "tuple[]"
+//       }
+//     ],
+//     "stateMutability": "view",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [],
+//     "name": "getAllProposals",
+//     "outputs": [
+//       {
+//         "components": [
+//           {
+//             "internalType": "uint256",
+//             "name": "id",
+//             "type": "uint256"
+//           },
+//           {
+//             "internalType": "uint256",
+//             "name": "dao_id",
+//             "type": "uint256"
+//           },
+//           {
+//             "internalType": "string",
+//             "name": "uri",
+//             "type": "string"
+//           },
+//           {
+//             "internalType": "uint256",
+//             "name": "donation",
+//             "type": "uint256"
+//           },
+//           {
+//             "internalType": "uint256",
+//             "name": "votes",
+//             "type": "uint256"
+//           }
+//         ],
+//         "internalType": "struct DAO.proposal_struct[]",
+//         "name": "",
+//         "type": "tuple[]"
+//       }
+//     ],
+//     "stateMutability": "view",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "_dao_id",
+//         "type": "uint256"
+//       }
+//     ],
+//     "name": "getAllProposalsByDAO",
+//     "outputs": [
+//       {
+//         "components": [
+//           {
+//             "internalType": "uint256",
+//             "name": "id",
+//             "type": "uint256"
+//           },
+//           {
+//             "internalType": "uint256",
+//             "name": "dao_id",
+//             "type": "uint256"
+//           },
+//           {
+//             "internalType": "string",
+//             "name": "uri",
+//             "type": "string"
+//           },
+//           {
+//             "internalType": "uint256",
+//             "name": "donation",
+//             "type": "uint256"
+//           },
+//           {
+//             "internalType": "uint256",
+//             "name": "votes",
+//             "type": "uint256"
+//           }
+//         ],
+//         "internalType": "struct DAO.proposal_struct[]",
+//         "name": "",
+//         "type": "tuple[]"
+//       }
+//     ],
+//     "stateMutability": "view",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "_dao_id",
+//         "type": "uint256"
+//       }
+//     ],
+//     "name": "getMembersByDAO",
+//     "outputs": [
+//       {
+//         "internalType": "address[]",
+//         "name": "",
+//         "type": "address[]"
+//       }
+//     ],
+//     "stateMutability": "view",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "_dao_id",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "uint256",
+//         "name": "_proposal_id",
+//         "type": "uint256"
+//       }
+//     ],
+//     "name": "getVotes",
+//     "outputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "",
+//         "type": "uint256"
+//       }
+//     ],
+//     "stateMutability": "view",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "_dao_id",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "uint256",
+//         "name": "_proposal_id",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "address",
+//         "name": "person",
+//         "type": "address"
+//       }
+//     ],
+//     "name": "hasVoted",
+//     "outputs": [
+//       {
+//         "internalType": "bool",
+//         "name": "",
+//         "type": "bool"
+//       }
+//     ],
+//     "stateMutability": "view",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "dao_id",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "address",
+//         "name": "_person",
+//         "type": "address"
+//       }
+//     ],
+//     "name": "isPersonJoined",
+//     "outputs": [
+//       {
+//         "internalType": "bool",
+//         "name": "",
+//         "type": "bool"
+//       }
+//     ],
+//     "stateMutability": "view",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "_dao_id",
+//         "type": "uint256"
+//       }
+//     ],
+//     "name": "joinDAO",
+//     "outputs": [],
+//     "stateMutability": "nonpayable",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "",
+//         "type": "uint256"
+//       }
+//     ],
+//     "name": "members",
+//     "outputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "dao_id",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "address",
+//         "name": "person",
+//         "type": "address"
+//       }
+//     ],
+//     "stateMutability": "view",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "",
+//         "type": "uint256"
+//       }
+//     ],
+//     "name": "proposals",
+//     "outputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "id",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "uint256",
+//         "name": "dao_id",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "string",
+//         "name": "uri",
+//         "type": "string"
+//       },
+//       {
+//         "internalType": "uint256",
+//         "name": "donation",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "uint256",
+//         "name": "votes",
+//         "type": "uint256"
+//       }
+//     ],
+//     "stateMutability": "view",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "_dao_id",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "uint256",
+//         "name": "_proposal_id",
+//         "type": "uint256"
+//       }
+//     ],
+//     "name": "vote",
+//     "outputs": [],
+//     "stateMutability": "nonpayable",
+//     "type": "function"
+//   },
+//   {
+//     "inputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "",
+//         "type": "uint256"
+//       }
+//     ],
+//     "name": "votes",
+//     "outputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "dao_id",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "uint256",
+//         "name": "proposal_id",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "address",
+//         "name": "person",
+//         "type": "address"
+//       }
+//     ],
+//     "stateMutability": "view",
+//     "type": "function"
+//   }
+// ]
+
+export const DAOabi = [
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "comments",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "proposal_id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "message",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_uri",
+        "type": "string"
+      }
+    ],
+    "name": "createDAO",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_dao_id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_uri",
+        "type": "string"
+      }
+    ],
+    "name": "createProposal",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "daos",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "uri",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "organizer",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "closed",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_proposal_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "donate",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllDaos",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "organizer",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "closed",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct DAO.dao_struct[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllProposals",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dao_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "donation",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "votes",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct DAO.proposal_struct[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_dao_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "getAllProposalsByDAO",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dao_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "donation",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "votes",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct DAO.proposal_struct[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_proposal_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "getComments",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "proposal_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "message",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct DAO.comment_struct[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_dao_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "getMembersByDAO",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_dao_id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_proposal_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "getVotes",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_dao_id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_proposal_id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "person",
+        "type": "address"
+      }
+    ],
+    "name": "hasVoted",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "dao_id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_person",
+        "type": "address"
+      }
+    ],
+    "name": "isPersonJoined",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_dao_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "joinDAO",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "members",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "dao_id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "person",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_proposal_id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "message",
+        "type": "string"
+      }
+    ],
+    "name": "postComment",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "proposals",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "dao_id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "uri",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "donation",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "votes",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_dao_id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_proposal_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "vote",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "votes",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "dao_id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "proposal_id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "person",
+        "type": "address"
       }
     ],
     "stateMutability": "view",

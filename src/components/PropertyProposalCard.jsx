@@ -3,13 +3,16 @@ import "../assets/styles/components/ProposalCard.scss";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const DAOCard = ({ props }) => {
+const PropertyProposalCard = ({ props, isMember }) => {
   const refCard = useRef(null);
   const refCardEnd = useRef(null);
   const isInView = useInView(refCard);
   const isInViewEnd = useInView(refCardEnd);
   const cardAnimateControl = useAnimation();
-  const id = props.id;
+
+  const daoId = props.dao_id;
+  const proposalId = props.issuer+'.'+props.pid;
+
   useEffect(() => {
     if (isInView) {
       cardAnimateControl.stop();
@@ -26,10 +29,9 @@ const DAOCard = ({ props }) => {
       });
     }
   }, [isInView, cardAnimateControl, isInViewEnd]);
-  const { name, date, fee, members } = props;
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/dao/${id}`); 
+    navigate(`/dao/${daoId}/propertyProposal/${proposalId}`);
   };
   return (
     <>
@@ -40,16 +42,16 @@ const DAOCard = ({ props }) => {
         initial={{ opacity: 0, x: -100 }}
         duration={0.5}
       >
-        <div className="proposal_card_container__title">{name}</div>
-        <div className="proposal_card_container__date">{date}</div>
+        <div className="proposal_card_container__title">Property NFT</div>
+        <div className="proposal_card_container__date">Value: {props.value}</div>
         <div className="proposal_card_container__description">
           <div className="proposal_card_container__description__title">
-            Membership Fee: ${fee}/month
+            Description
           </div>
           <div className="proposal_card_container__description__body">
-            Total Members: {members}
+            {props.description}
           </div>
-          <div className="proposal_card_container__description__button_container">
+          { isMember && <div className="proposal_card_container__description__button_container">
             <motion.button
               className="proposal_card_container__description__button_container__button"
               whileHover={{ scale: 1.1 }}
@@ -57,13 +59,13 @@ const DAOCard = ({ props }) => {
               whileTap={{ scale: 0.9 }}
               onClick={handleClick}
             >
-              Go to DAO {'>'}
+              View
             </motion.button>
-          </div>
+          </div>}
         </div>
       </motion.div>
     </>
   );
 };
 
-export default DAOCard;
+export default PropertyProposalCard;

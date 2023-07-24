@@ -2,7 +2,7 @@
 async function main() {
     const Dao = await ethers.getContractFactory("DAO")
     const dao = await Dao.deploy();
-    console.log("Loan address:", dao.target);
+    console.log("Dao address:", dao.target);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

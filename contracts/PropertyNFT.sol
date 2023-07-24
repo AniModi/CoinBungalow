@@ -26,6 +26,14 @@ contract PropertyNFT is ERC721Enumerable{
       return newTokenId;
    } 
 
+   function mintTo(address to) public returns (uint256){
+     tokenIds.increment();
+     uint256 newTokenId = tokenIds.current();
+     _safeMint(to, newTokenId);
+      
+      return newTokenId;
+   }
+
    function setTokenURI(uint256 tokenId, string memory uri) public {
      require(_isApprovedOrOwner(msg.sender, tokenId), "Not approved or owner");
      _setTokenURI(tokenId, uri);

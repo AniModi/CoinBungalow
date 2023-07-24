@@ -10,6 +10,9 @@ const ProposalCard = ({ props }) => {
   const isInViewEnd = useInView(refCardEnd);
   const cardAnimateControl = useAnimation();
 
+  const daoId = props.id.split("/")[0]+"/"+props.id.split("/")[1];
+  const proposalId = props.id.split("/")[2];
+
   useEffect(() => {
     if (isInView) {
       cardAnimateControl.stop();
@@ -29,7 +32,7 @@ const ProposalCard = ({ props }) => {
   const { title, date, description } = props;
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/dao/1/proposal/1");
+    navigate(`/dao/${daoId}/proposal/${proposalId}`);
   };
   return (
     <>

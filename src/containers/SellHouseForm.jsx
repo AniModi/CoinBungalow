@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import "../assets/styles/containers/SellHouseForm.scss";
 import Navbar from '../components/Navbar';
 import InputBox from '../components/InputBox';
-import { PnftAddress, PnftAbi } from '../constants';
-import { writeContract, readContract } from 'wagmi/actions';
+import { PnftAddress, PnftAbi, DAOabi, DAOaddress } from '../constants';
+import { writeContract, readContract, getAccount } from 'wagmi/actions';
 import lighthouse from '@lighthouse-web3/sdk';
 import { Polybase } from "@polybase/client";
 
@@ -15,6 +15,7 @@ const db_metadata = db.collection('PropertyNFTMetadata')
 const apiKey = 'a479e403.cac0fbe03f9b43cf8875c512a8321308'
 
 const SellHouseForm = () => {
+    const account = getAccount();
      const form = [
         {
             label: "Property age",
@@ -162,7 +163,9 @@ const SellHouseForm = () => {
             abi: PnftAbi,
             functionName: "totalSupply",
         });
-        const recordId = PnftAddress+(parseInt(totalSupply.toString()) +1).toString();
+        const tokenId = (parseInt(totalSupply.toString()) +1).toString();
+        const recordId = PnftAddress+tokenId;
+        try{
         const recordData = await db_metadata.create([
             recordId,
             'Property NFT ',
@@ -179,17 +182,27 @@ const SellHouseForm = () => {
             imagesLink,
             titleDeedLink
         ]);
+    } catch(e){
+        console.log(e)
+    }
+    
 
  const url = `https://testnet.polybase.xyz/v0/collections/pk%2F0x1a57dc69d2e8e6938a05bdefbebd62622ddbb64038f7347bd4fe8beb37b9bf40d5e8b62eaf9de36cbff52904b7f81bff22b29716021aaa8c11ee552112143259%2FCB%2FPropertyNFTMetadata/records/${recordId}`+'?format=nft`';
         console.log('visit at --> ', url)
 
-        const tokenId = await writeContract({  
-            address: PnftAddress,
-            abi: PnftAbi,
-            functionName: "mint",
-            args: [url],
+        const { hash } = await writeContract({
+            address: DAOaddress,
+            abi: DAOabi,
+            functionName: "createProposal",
+            args: [0, account.address+', '+tokenId],
         });
-        console.log(tokenId);
+
+        // const tokenId = await writeContract({  
+        //     address: PnftAddress,
+        //     abi: PnftAbi,
+        //     functionName: "mint",
+        //     args: [url],
+        // });
         setFormState(defaultFormState);
     };
 

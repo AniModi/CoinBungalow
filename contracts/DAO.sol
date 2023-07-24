@@ -7,6 +7,7 @@ contract DAO{
  uint256 proposal_counter;
  uint256 member_counter;
  uint256 vote_counter;
+ uint256 comment_counter;
 
 struct dao_struct{
     uint256 id;
@@ -34,10 +35,17 @@ struct vote_struct{
     address person;
 }
 
- mapping(uint=>dao_struct) public daos;
- mapping(uint=>proposal_struct) public proposals;
- mapping(uint=>member_struct) public members;
- mapping(uint=>vote_struct) public votes;
+struct comment_struct{
+    uint256 id;
+    uint256 proposal_id;
+    string message;
+}
+
+ mapping(uint256=>dao_struct) public daos;
+ mapping(uint256=>proposal_struct) public proposals;
+ mapping(uint256=>member_struct) public members;
+ mapping(uint256=>vote_struct) public votes;
+ mapping(uint256=>comment_struct) public comments;
 
  function createDAO(string memory _uri) public returns(uint256){
      daos[dao_counter]=dao_struct(dao_counter,_uri,msg.sender,false);
@@ -90,13 +98,25 @@ struct vote_struct{
     proposals[_proposal_id].donation+=msg.value;
  }
 
- function isPersonJoined(address _person) public view returns (bool){
+ function isPersonJoined(uint256 dao_id, address _person) public view returns (bool){
     for(uint i=0;i<member_counter;i++){
-        if(members[i].person==_person){
+        if(members[i].person==_person && members[i].dao_id==dao_id){
             return true;
         }
     }
     return false;
+ }
+
+ function getMembersByDAO(uint256 _dao_id) public view returns(address[] memory){
+     address[] memory _members=new address[](member_counter);
+     uint256 counter=0;
+     for(uint i=0;i<member_counter;i++){
+         if(members[i].dao_id==_dao_id){
+             _members[counter]=members[i].person;
+             counter++;
+         }
+     }
+     return _members;
  }
 
  function vote(uint256 _dao_id, uint256 _proposal_id) public {
@@ -122,6 +142,24 @@ struct vote_struct{
          }
      }
      return counter;
+ }
+
+ function postComment(uint256 _proposal_id, string memory message) public returns(uint256) {
+     comments[comment_counter]=comment_struct(comment_counter,_proposal_id,message);
+     comment_counter++;
+        return comment_counter;
+ }
+
+ function getComments(uint256 _proposal_id) public view returns(comment_struct[] memory){
+     comment_struct[] memory _comments=new comment_struct[](comment_counter);
+     uint256 counter=0;
+     for(uint i=0;i<comment_counter;i++){
+         if(comments[i].proposal_id==_proposal_id){
+             _comments[counter]=comments[i];
+             counter++;
+         }
+     }
+     return _comments;
  }
 
 }
