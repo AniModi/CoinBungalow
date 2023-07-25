@@ -6,13 +6,9 @@ module.exports = {
   solidity: "0.8.18",
   networks: {
     localhost: {},
-    sepolia: {
-      url: process.env.ALCHEMY_SEPOLIA_URL,
+    mumbai: {
+      url: process.env.ALCHEMY_MUMBAI_URL,
       accounts: [process.env.PRIVATE_KEY]
     },
-    // mumbai: {
-    //   url: "https://rpc-mumbai.maticvigil.com",
-    //   accounts: [process.env.PRIVATE_KEY],
-    // },
   }
 };

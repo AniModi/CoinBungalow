@@ -1,11 +1,10 @@
-// sepolia addresses
-export const PnftAddress = '0x9126482a73b8B56cBF62443765aC5DC2CD1f5F3f'
-export const PdealAddress = '0x6EFEC8b346D8f03303C25cc2EC7637218E544f06'
-export const SbtAddress = '0xe3F4263170FAFAAA2A20e09f70c915Db8C97CD85'
-export const LoanAddress = '0xfD1aFD96eD896f750f4231B0b1Adee72179A1605'
-export const DAOaddress = '0x403405289310b194Adf8B6dD96652f29D7f94754'
-
-// polygon addresses
+//sepolia addresses
+export const PnftAddress = '0x619a7618e045db47044cbC00dc6D3ffA31FC473F'
+export const PdealAddress = '0x0df7f720a16045C34D5226fFd0719e464127a71c'
+export const SbtAddress = '0x1aC6559A9222f389a58d2481eC7efC58D5eF3237'
+export const LoanAddress = '0xC61712e9FCa788D7FAB288e76eFA05fa974bf3A0'
+export const DAOaddress = '0xa978631170779778A34c4c193552EE65aE881231'
+// local addresses
 // export const PnftAddress = '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707'
 // export const PdealAddress = '0x0165878A594ca255338adfa4d48449f69242Eb8F'
 // export const SbtAddress = '0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6'
