@@ -10,7 +10,7 @@ const ProposalCard = ({ props }) => {
   const isInViewEnd = useInView(refCardEnd);
   const cardAnimateControl = useAnimation();
 
-  const daoId = props.id.split("/")[0]+"/"+props.id.split("/")[1];
+  const daoId = props.id.split("/")[0]+","+props.id.split("/")[1];
   const proposalId = props.id.split("/")[2];
 
   useEffect(() => {

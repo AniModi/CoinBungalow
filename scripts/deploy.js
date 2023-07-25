@@ -11,17 +11,17 @@ async function main() {
     const propertyDeal = await PropertyDeal.deploy(propertyNFT.target);
     console.log("PropertyDeal address:", propertyDeal.target);
 
-    // const Sbt = await ethers.getContractFactory("SBT")
-    // const sbt = await Sbt.deploy();
-    // console.log("SBT address:", sbt.target);
-
     const Loan = await ethers.getContractFactory("Loan")
     const loan = await Loan.deploy(propertyNFT.target);
     console.log("Loan address:", loan.target);
 
-    // const Dao = await ethers.getContractFactory("DAO")
-    // const dao = await Dao.deploy();
-    // console.log("Dao address:", dao.target);
+    const Sbt = await ethers.getContractFactory("SBT")
+    const sbt = await Sbt.deploy();
+    console.log("SBT address:", sbt.target);
+
+    const Dao = await ethers.getContractFactory("DAO")
+    const dao = await Dao.deploy();
+    console.log("Dao address:", dao.target);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

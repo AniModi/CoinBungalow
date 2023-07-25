@@ -38,6 +38,7 @@ struct vote_struct{
 struct comment_struct{
     uint256 id;
     uint256 proposal_id;
+    address commenter;
     string message;
 }
 
@@ -145,7 +146,7 @@ struct comment_struct{
  }
 
  function postComment(uint256 _proposal_id, string memory message) public returns(uint256) {
-     comments[comment_counter]=comment_struct(comment_counter,_proposal_id,message);
+     comments[comment_counter]=comment_struct(comment_counter,_proposal_id, msg.sender, message);
      comment_counter++;
         return comment_counter;
  }

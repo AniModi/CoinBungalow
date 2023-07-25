@@ -31,7 +31,7 @@ import AllDAOPage from './containers/AllDAOPage';
 import ProposalDetailPage from './assets/styles/containers/ProposalDetailPage';
 import PropertyProposalDetailPage from './assets/styles/containers/PropertyProposalDetailPage';
 const { chains, publicClient } = configureChains(
-  [polygonMumbai, sepolia, hardhat],
+  [sepolia],
   [
     publicProvider()
   ]

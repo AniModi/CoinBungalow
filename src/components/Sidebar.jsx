@@ -13,7 +13,7 @@ const Sidebar = () => {
     {
       className: "sidebar_container__items",
       to: "/profile/offers",
-      text: "Offers",
+      text: "Offer",
       active: false,
     },
     {

@@ -23,7 +23,7 @@ const LandingPage = () => {
       text2: "Sell a property",
     },
     {
-      title: "Want to deal in properties?",
+      title: "Need financing?",
       body: "Well, we got you covered!",
       img: "https://i.imgur.com/53cIK90.png",
       url1: "/borrow",

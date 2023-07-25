@@ -61,7 +61,6 @@ const DAOPage = () => {
 
   const loadProposalsData = async (proposals) => {
       let _props = [], _propertyProps = [];
-
       for(const proposal of proposals){
         if(proposal.uri==='uri'){
         const _recordId = recordId+"/"+proposal.id;

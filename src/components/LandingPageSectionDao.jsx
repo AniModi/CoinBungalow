@@ -52,7 +52,7 @@ const LandingPageSectionDao = () => {
           <div
             className="landing_page_section_dao_container__text__title"
           >
-            Explore the DAO Ecosystem
+            Empower Your Community...
             <motion.div
               className="landing_page_section_dao_container__text__title__fill"
               initial={{ width: "100%" }}
@@ -74,7 +74,7 @@ const LandingPageSectionDao = () => {
           </div>
           <div className="landing_page_section_dao_container__text__body">
             <div className="landing_page_section_dao_container__text__body__left">
-              Experience the inclusive and transparent nature of our DAO, where
+              Experience the inclusive and transparent nature of DAO, where
               every voice matters. Get a glimpse of the innovative ideas and
               community-driven projects that emerge from this collaborative
               ecosystem.
