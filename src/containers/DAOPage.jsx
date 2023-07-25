@@ -168,7 +168,7 @@ const DAOPage = () => {
           <div className="dao_page_container__text_box__body__left__subheading">DAO goal</div>
           <div className="dao_page_container__text_box__body__left">{daoDetails.goal}</div>
           <div className="dao_page_container__text_box__body__left__subheading">Membership Fee: ${daoDetails.fee}/month</div>
-          {!isMember && <button className="dao_page_container__text_box__body__right__button">Join community</button>}
+          {!isMember && <button className="dao_page_container__text_box__body__right__button" onClick={join}>Join community</button>}
           </div>
         }
         {active === "All Proposals" && (
