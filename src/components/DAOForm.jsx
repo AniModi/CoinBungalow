@@ -116,7 +116,7 @@ const DAOForm = () => {
             <input
               className="proposal_form_container__form__input_container__input"
               type="number"
-              placeholder="&#8377;/month"
+              placeholder="MATIC/month"
               name="MembershipFee"
               onChange={inputHandler}
             ></input>

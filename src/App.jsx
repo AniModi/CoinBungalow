@@ -15,6 +15,7 @@ import {
 } from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { publicProvider } from 'wagmi/providers/public';
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import {
   polygonMumbai, hardhat, sepolia
 } from 'wagmi/chains';
@@ -31,9 +32,14 @@ import AllDAOPage from './containers/AllDAOPage';
 import ProposalDetailPage from './assets/styles/containers/ProposalDetailPage';
 import PropertyProposalDetailPage from './assets/styles/containers/PropertyProposalDetailPage';
 const { chains, publicClient } = configureChains(
-  [sepolia],
+  [polygonMumbai],
   [
-    publicProvider()
+    // publicProvider()
+    jsonRpcProvider({
+      rpc: (chain)=>({
+        http: 'https://indulgent-shy-aura.matic-testnet.discover.quiknode.pro/f3eadc815d04049d61d581cc6e1f6a6f152c7eec/'
+      })
+    })
   ]
 );
 

@@ -43,7 +43,7 @@ const PropertyProposalCard = ({ props, isMember }) => {
         duration={0.5}
       >
         <div className="proposal_card_container__title">Property NFT</div>
-        <div className="proposal_card_container__date">Value: {props.value}</div>
+        <div className="proposal_card_container__date">Value: {props.value} MATIC</div>
         <div className="proposal_card_container__description">
           <div className="proposal_card_container__description__title">
             Description

@@ -160,7 +160,7 @@ const ProposalDetailPage = () => {
             {"Requirement"}
           </div>:
           <div className="proposal_detail_page_container__price__body">
-            {props.requirement}
+            {props.requirement+" MATIC"}
           </div>
         </div>
         <div className="proposal_detail_page_container__price">
@@ -168,7 +168,7 @@ const ProposalDetailPage = () => {
             {"Total donation"}
           </div>:
           <div className="proposal_detail_page_container__price__body">
-            {props.donation!==undefined && formatEther(props.donation)}
+            {props.donation!==undefined && formatEther(props.donation)+" MATIC"}
           </div>
         </div>
         <div className="proposal_detail_page_container__price">

@@ -1,9 +1,15 @@
 //sepolia addresses
-export const PnftAddress = '0x619a7618e045db47044cbC00dc6D3ffA31FC473F'
-export const PdealAddress = '0x0df7f720a16045C34D5226fFd0719e464127a71c'
-export const SbtAddress = '0x1aC6559A9222f389a58d2481eC7efC58D5eF3237'
-export const LoanAddress = '0xC61712e9FCa788D7FAB288e76eFA05fa974bf3A0'
-export const DAOaddress = '0xa978631170779778A34c4c193552EE65aE881231'
+// export const PnftAddress = '0x619a7618e045db47044cbC00dc6D3ffA31FC473F'
+// export const PdealAddress = '0x0df7f720a16045C34D5226fFd0719e464127a71c'
+// export const SbtAddress = '0x1aC6559A9222f389a58d2481eC7efC58D5eF3237'
+// export const LoanAddress = '0xC61712e9FCa788D7FAB288e76eFA05fa974bf3A0'
+// export const DAOaddress = '0xa978631170779778A34c4c193552EE65aE881231'
+//mumbai addresses
+export const PnftAddress = '0x3579Bb364cA9097ECE7d1965e1668921d3669583'
+export const PdealAddress = '0x29fD08fcFcA70dF833bA2963C75D04A317A2c118'
+export const SbtAddress = '0x1Fa757597c640C4d55E3F8313482f76c679DAe8B'
+export const LoanAddress = '0xAd875b392C619fA798CeF148a88db586796E0C35'
+export const DAOaddress = '0xbED1095F1D02FCA01143eAE2699411DFfF98e232'
 // local addresses
 // export const PnftAddress = '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707'
 // export const PdealAddress = '0x0165878A594ca255338adfa4d48449f69242Eb8F'

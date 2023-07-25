@@ -134,7 +134,7 @@ const ProposalForm = ({daoId}) => {
             <input
               className="proposal_form_container__form__input_container__input"
               type="number"
-              placeholder="ETH"
+              placeholder="MATIC"
               name="estimatedCost"
               onChange={handleInput}
             ></input>

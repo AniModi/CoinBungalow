@@ -44,7 +44,7 @@ const DAOCard = ({ props }) => {
         <div className="proposal_card_container__date">{date}</div>
         <div className="proposal_card_container__description">
           <div className="proposal_card_container__description__title">
-            Membership Fee: ${fee}/month
+            Membership Fee: {fee} MATIC/month
           </div>
           <div className="proposal_card_container__description__body">
             Total Members: {members}

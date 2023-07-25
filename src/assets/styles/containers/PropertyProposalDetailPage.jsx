@@ -94,7 +94,7 @@ const PropertyProposalDetailPage = () => {
             {"Value"}
           </div>
           <div className="proposal_detail_page_container__date__body">
-            {"$"+props.value}
+            {props.value+" MATIC"}
           </div>
         </div>
         <div className="proposal_detail_page_container__description">
