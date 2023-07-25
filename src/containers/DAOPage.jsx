@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import ProposalCard from "../components/ProposalCard";
 import PropertyProposalCard from "../components/PropertyProposalCard";
 import ProposalForm from "../components/ProposalForm";
-import { readContract, getAccount } from "wagmi/actions"
+import { readContract, writeContract, getAccount } from "wagmi/actions"
 import {DAOaddress, DAOabi, PnftAddress} from "../constants";
 import { db_metadata, db_proposals, db_properties} from "../dao_database";
 
@@ -59,9 +59,24 @@ const DAOPage = () => {
     loadMetadata();
   },[])
 
+  const join = async () => {
+    try{
+      await writeContract({
+        address: DAOaddress,
+        abi: DAOabi,
+        functionName: 'joinDAO',
+        args: [daoId]
+      })
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+
   const loadProposalsData = async (proposals) => {
       let _props = [], _propertyProps = [];
       for(const proposal of proposals){
+        if(proposal.uri==='') continue;
         if(proposal.uri==='uri'){
         const _recordId = recordId+"/"+proposal.id;
         const { data } = await db_proposals.record(_recordId).get();
@@ -97,7 +112,7 @@ const DAOPage = () => {
         functionName: 'getAllProposalsByDAO',
         args: [daoId]
       })
-      
+      proposals = proposals.filter((prop)=>prop.id.toString()!==daoId);
       proposals = proposals.map((prop)=>({id: prop.id.toString(), uri: prop.uri}));
 
       await loadProposalsData(proposals);
