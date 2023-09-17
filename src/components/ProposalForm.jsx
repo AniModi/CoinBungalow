@@ -3,7 +3,6 @@ import "../assets/styles/components/ProposalForm.scss";
 import { readContract, writeContract,getAccount } from "wagmi/actions";
 import { DAOaddress, DAOabi } from "../constants";
 import { db_proposals } from "../dao_database";
-import { parseGwei } from "viem";
 
 const ProposalForm = ({daoId}) => {
   const account = getAccount();
@@ -51,8 +50,7 @@ const ProposalForm = ({daoId}) => {
         address: DAOaddress,
         abi: DAOabi,
         functionName: "createProposal",
-        args: [daoId, 'uri'],
-        gasPrice: parseGwei('20')
+        args: [daoId, 'uri']
       })
 
       setFormState(defaultFormState);
